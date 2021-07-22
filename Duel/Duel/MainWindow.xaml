@@ -64,6 +64,16 @@
             Grid.RowSpan="2"
             Width="120"/>
 
+        <Button
+            x:Name="Button_Strike"
+            Content="Strike"
+            Grid.Column="1"
+            Grid.Row="1"
+            Width="120"
+            Height="25"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"/>
+
         <Label
             x:Name="Label_Rezultat"
             Content="Rezultat"
