@@ -10,12 +10,14 @@ namespace Classes
     {
         private int HP;
         private int Damage;
+        private int Armor;
         private string Name;
 
-        public CombatClass(int objHP, int objDamage, string objName)
+        public CombatClass(int objHP, int objDamage, int objArmor, string objName)
         {
             HP = objHP;
             Damage = objDamage;
+            Armor = objArmor;
             Name = objName;
         }
 
