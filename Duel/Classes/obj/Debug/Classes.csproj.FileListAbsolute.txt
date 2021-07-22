@@ -1,0 +1,2 @@
+E:\VS_Project\Joculet\Duel\Classes\obj\Debug\Classes.csprojAssemblyReference.cache
+E:\VS_Project\Joculet\Duel\Classes\obj\Debug\Classes.csproj.CoreCompileInputs.cache
