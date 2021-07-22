@@ -7,6 +7,68 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label
+            x:Name="Label_CLass"
+            Content="Choose a class"
+            Grid.Row="1"
+            Grid.Column="0"
+            Width="120"
+            Height="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"/>
+        <ComboBox
+            x:Name="Class"
+            Grid.Column="0"
+            Grid.Row="1"
+            Width="120"
+            Height="25"/>
+
+        <Label
+            x:Name="Label_Weapon"
+            Content="Choose a weapon"
+            Grid.Column="0"
+            Grid.Row="2"
+            Margin="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"/>
+        <ComboBox
+            x:Name="ComboBox_Weapon"
+            Grid.Column="0"
+            Grid.Row="2"
+            Width="120"
+            Height="25"/>
+
+        <Button
+            x:Name="Button_StartFight"
+            Content="Start Fight"
+            Grid.Column="1"
+            Grid.Row="0"
+            Width="120"
+            Height="25"/>
+
+        <ListBox
+            x:Name="ListBox_DamageOutput"
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            Width="120"/>
+
+        <Label
+            x:Name="Label_Rezultat"
+            Content="Rezultat"
+            Grid.Column="1"
+            Grid.Row="3"
+            HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>
