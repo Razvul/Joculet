@@ -13,3 +13,6 @@ E:\VS_Project\Joculet\Duel\Duel\obj\Debug\Duel.csproj.GenerateResource.cache
 E:\VS_Project\Joculet\Duel\Duel\obj\Debug\Duel.csproj.CoreCompileInputs.cache
 E:\VS_Project\Joculet\Duel\Duel\obj\Debug\Duel.exe
 E:\VS_Project\Joculet\Duel\Duel\obj\Debug\Duel.pdb
+E:\VS_Project\Joculet\Duel\Duel\bin\Debug\Classes.dll
+E:\VS_Project\Joculet\Duel\Duel\bin\Debug\Classes.pdb
+E:\VS_Project\Joculet\Duel\Duel\obj\Debug\Duel.csproj.CopyComplete

@@ -96,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Classes\Classes.csproj">
-      <Project>{3d76343f-acde-41f3-832c-016a8a4410b0}</Project>
+      <Project>{21f4b182-122d-4a08-8c47-be37b9550491}</Project>
       <Name>Classes</Name>
     </ProjectReference>
   </ItemGroup>

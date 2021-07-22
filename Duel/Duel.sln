@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duel", "Duel\Duel.csproj", "{B7533DAC-1D22-48C7-A980-DA81767B4112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "Classes\Classes.csproj", "{3D76343F-ACDE-41F3-832C-016A8A4410B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "Classes\Classes.csproj", "{21F4B182-122D-4A08-8C47-BE37B9550491}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{B7533DAC-1D22-48C7-A980-DA81767B4112}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7533DAC-1D22-48C7-A980-DA81767B4112}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7533DAC-1D22-48C7-A980-DA81767B4112}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D76343F-ACDE-41F3-832C-016A8A4410B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D76343F-ACDE-41F3-832C-016A8A4410B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D76343F-ACDE-41F3-832C-016A8A4410B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D76343F-ACDE-41F3-832C-016A8A4410B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21F4B182-122D-4A08-8C47-BE37B9550491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21F4B182-122D-4A08-8C47-BE37B9550491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21F4B182-122D-4A08-8C47-BE37B9550491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21F4B182-122D-4A08-8C47-BE37B9550491}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
