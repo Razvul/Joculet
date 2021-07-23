@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    class Class1
+    public class Warrior: CombatClass
     {
+        private int Weapon;
+        private int Helmet;
     }
 }

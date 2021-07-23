@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Warrior.cs" />
     <Compile Include="CombatClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
