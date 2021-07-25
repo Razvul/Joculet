@@ -6,9 +6,22 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class Warrior: CombatClass
+    public class Warrior : CombatClass
     {
-        private int Weapon;
-        private int Helmet;
+        public Warrior(int objHP, int objMinDamage, int objMaxDamage, int objArmor, string objName):
+            base(objHP, objMinDamage, objMaxDamage, objArmor, objName)
+        {
+        }
+        public int Weapon;
+        public int Helmet;
+
+        public int MortalStrike()
+        {
+            int crit = 0;
+            Random rdn = new Random();
+            int HighDamage = rdn.Next(20, 50);
+            crit = HighDamage / 100 * AttackValue(MinDamage, MaxDamage);
+            return crit;
+        }
     }
 }
