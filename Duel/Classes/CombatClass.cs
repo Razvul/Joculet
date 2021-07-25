@@ -8,19 +8,20 @@ namespace Classes
 {
     public class CombatClass
     {
-        private int HP;
-        private int MinDamage;
-        private int MaxDamage;
-        private int Armor;
-        private string Name;
+        public int HP;
+        public int MinDamage;
+        public int MaxDamage;
+        public int Armor;
+        public string Name;
 
-        //public CombatClass(int objHP, int objDamage, int objArmor, string objName)
-        //{
-        //    HP = objHP;
-        //    Damage = objDamage;
-        //    Armor = objArmor;
-        //    Name = objName;
-        //}
+        public CombatClass(int objHP, int objMinDamage, int objMaxDamage, int objArmor, string objName)
+        {
+            HP = objHP;
+            MinDamage = objMinDamage;
+            MaxDamage = objMaxDamage;
+            Armor = objArmor;
+            Name = objName;
+        }
 
         public int AttackValue(int objMinDamage, int objMaxDamage)
         {
@@ -32,9 +33,6 @@ namespace Classes
             return RandomAttackDamage;
         }
 
-        //public int DamageDone()
-        //{
-        //    return AttackValue() - Armor;
-        //}
+
     }
 }

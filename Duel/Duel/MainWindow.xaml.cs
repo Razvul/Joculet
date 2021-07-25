@@ -25,6 +25,13 @@ namespace Duel
         public MainWindow()
         {
             InitializeComponent();
+            Warrior Varian = new Warrior(130, 3, 4, 7, "Varian");
+            Paladin Arthas = new Paladin(120, 2, 3, 5, "Arthas");
+        }
+
+        public int DamageDone(CombatClass fighter1, CombatClass fighter2)
+        {
+            return fighter1.AttackValue(fighter1.MinDamage, fighter1.MaxDamage) - fighter2.Armor;
         }
     }
 }
