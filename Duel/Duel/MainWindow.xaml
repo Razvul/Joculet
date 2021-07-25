@@ -63,16 +63,36 @@
             Grid.Column="1"
             Grid.RowSpan="2"
             Width="120"/>
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
 
-        <Button
+            <Button
             x:Name="Button_Strike"
             Content="Strike"
+            Width="120"
+            Height="25"/>
+
+            <Button
+            x:Name="Button_Skill"
+            Content="Special Skill"
+            Width="120"
+            Height="25"/>
+        </StackPanel>
+
+        <StackPanel
             Grid.Column="1"
             Grid.Row="1"
-            Width="120"
-            Height="25"
             HorizontalAlignment="Right"
-            VerticalAlignment="Top"/>
+            VerticalAlignment="Top">
+            <Button
+                x:Name="Button_Wait"
+                Content="Wait Oponent"
+                Width="120"
+                Height="25"/>
+        </StackPanel>
 
         <Label
             x:Name="Label_Rezultat"

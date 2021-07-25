@@ -29,9 +29,10 @@ namespace Duel
             Paladin Arthas = new Paladin(120, 2, 3, 5, "Arthas");
         }
 
-        public int DamageDone(CombatClass fighter1, CombatClass fighter2)
+        public void DamageDone(CombatClass fighter1, CombatClass fighter2)
         {
-            return fighter1.AttackValue(fighter1.MinDamage, fighter1.MaxDamage) - fighter2.Armor;
+            int attackValue = fighter1.AttackValue(fighter1.MinDamage, fighter1.MaxDamage) - fighter2.Armor;
+            fighter2.HP -= attackValue;
         }
     }
 }
