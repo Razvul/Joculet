@@ -75,6 +75,8 @@ namespace Duel
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Button_Strike.IsEnabled = false;
+            Button_Skill.IsEnabled = false;
+            Button_Wait_Oponent.IsEnabled = false;
         }
     }
 }

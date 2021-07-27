@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Duel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -119,7 +119,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top">
             <Button
-                x:Name="Button_Wait"
+                x:Name="Button_Wait_Oponent"
                 Content="Wait Oponent"
                 Width="120"
                 Height="25"/>
