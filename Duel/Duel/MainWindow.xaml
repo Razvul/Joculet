@@ -17,24 +17,39 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <Label
-            x:Name="Label_CLass"
-            Content="Choose a class"
+        <StackPanel
             Grid.Row="1"
             Grid.Column="0"
-            Width="120"
-            Height="25"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"/>
-        <ComboBox
-            x:Name="ComboBox_Class"
-            DisplayMemberPath="Name"
-            Grid.Column="0"
-            Grid.Row="1"
-            Width="120"
-            Height="25"/>
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left">
+            <Label
+                x:Name="Label_CLass_PLayer"
+                Content="Choose your class"
+                Width="120"
+                Height="25"/>
+            <ComboBox
+                x:Name="ComboBox_Class_PLayer"
+                DisplayMemberPath="Name"
+                Width="120"
+                Height="25"/>
+        </StackPanel>
 
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Right">
+            <Label
+                x:Name="Label_Class_Oponent"
+                Content="Choose your oponent"
+                Width="120"
+                Height="25"/>
+            <ComboBox
+                x:Name="ComboBox_Class_Oponent"
+                DisplayMemberPath="Name"
+                Width="120"
+                Height="25"/>
+        </StackPanel>
         <Label
             x:Name="Label_Weapon"
             Content="Choose a weapon"

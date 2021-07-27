@@ -28,9 +28,13 @@ namespace Duel
             Warrior Varian = new Warrior(130, 3, 4, 7, "Varian");
             Paladin Arthas = new Paladin(120, 2, 3, 5, "Arthas");
 
-            ComboBox_Class.Items.Add(Varian);
-            ComboBox_Class.Items.Add(Arthas);
-            ComboBox_Class.SelectedIndex = 0;
+            ComboBox_Class_PLayer.Items.Add(Varian);
+            ComboBox_Class_PLayer.Items.Add(Arthas);
+            ComboBox_Class_PLayer.SelectedIndex = 0;
+
+            ComboBox_Class_Oponent.Items.Add(Varian);
+            ComboBox_Class_Oponent.Items.Add(Arthas);
+            ComboBox_Class_Oponent.SelectedIndex = 1;
 
             Weapons Gorehowl = new Weapons()
             {
