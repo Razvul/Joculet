@@ -40,7 +40,7 @@ namespace Duel
             {
                 MinDamage = 7,
                 MaxDamage = 15,
-                WeaponName = "Gorhowl"
+                WeaponName = "Gorehowl"
             };
             Weapons Warbreaker = new Weapons()
             {
@@ -55,16 +55,26 @@ namespace Duel
                 WeaponName = "LightsVengeance"
             };
 
-            ComboBox_Weapon.Items.Add(Gorehowl);
-            ComboBox_Weapon.Items.Add(Warbreaker);
-            ComboBox_Weapon.Items.Add(LightsVengeance);
-            ComboBox_Weapon.SelectedIndex = 0;
+            ComboBox_Weapon_Player.Items.Add(Gorehowl);
+            ComboBox_Weapon_Player.Items.Add(Warbreaker);
+            ComboBox_Weapon_Player.Items.Add(LightsVengeance);
+            ComboBox_Weapon_Player.SelectedIndex = 0;
+
+            ComboBox_Weapon_Oponent.Items.Add(Gorehowl);
+            ComboBox_Weapon_Oponent.Items.Add(Warbreaker);
+            ComboBox_Weapon_Oponent.Items.Add(LightsVengeance);
+            ComboBox_Weapon_Oponent.SelectedIndex = 2;
         }
 
         public void DamageDone(CombatClass fighter1, CombatClass fighter2)
         {
             int attackValue = fighter1.AttackValue(fighter1.MinDamage, fighter1.MaxDamage) - fighter2.Armor;
             fighter2.HP -= attackValue;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Button_Strike.IsEnabled = false;
         }
     }
 }
