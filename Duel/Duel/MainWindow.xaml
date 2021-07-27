@@ -28,7 +28,8 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"/>
         <ComboBox
-            x:Name="Class"
+            x:Name="ComboBox_Class"
+            DisplayMemberPath="Name"
             Grid.Column="0"
             Grid.Row="1"
             Width="120"
@@ -44,6 +45,7 @@
             VerticalAlignment="Top"/>
         <ComboBox
             x:Name="ComboBox_Weapon"
+            DisplayMemberPath="WeaponName"
             Grid.Column="0"
             Grid.Row="2"
             Width="120"

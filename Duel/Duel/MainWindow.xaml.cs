@@ -27,6 +27,34 @@ namespace Duel
             InitializeComponent();
             Warrior Varian = new Warrior(130, 3, 4, 7, "Varian");
             Paladin Arthas = new Paladin(120, 2, 3, 5, "Arthas");
+
+            ComboBox_Class.Items.Add(Varian);
+            ComboBox_Class.Items.Add(Arthas);
+            ComboBox_Class.SelectedIndex = 0;
+
+            Weapons Gorehowl = new Weapons()
+            {
+                MinDamage = 7,
+                MaxDamage = 15,
+                WeaponName = "Gorhowl"
+            };
+            Weapons Warbreaker = new Weapons()
+            {
+                MinDamage = 5,
+                MaxDamage = 11,
+                WeaponName = "Warbreaker"
+            };
+            Weapons LightsVengeance = new Weapons()
+            {
+                MinDamage = 6,
+                MaxDamage = 10,
+                WeaponName = "LightsVengeance"
+            };
+
+            ComboBox_Weapon.Items.Add(Gorehowl);
+            ComboBox_Weapon.Items.Add(Warbreaker);
+            ComboBox_Weapon.Items.Add(LightsVengeance);
+            ComboBox_Weapon.SelectedIndex = 0;
         }
 
         public void DamageDone(CombatClass fighter1, CombatClass fighter2)
