@@ -8,12 +8,7 @@ namespace Classes
 {
     public class CombatClass
     {
-        //public int HP;
-        //public int MinDamage;
-        //public int MaxDamage;
-        //public int Armor;
-        //public string Name;
-
+        #region Proprietati
         private int hp;
 
         public int HP
@@ -53,7 +48,7 @@ namespace Classes
             get { return name; }
             set { name = value; }
         }
-
+        #endregion
 
         public CombatClass(int objHP, int objMinDamage, int objMaxDamage, int objArmor, string objName)
         {
@@ -70,7 +65,7 @@ namespace Classes
             MaxDamage = objMaxDamage;
             Random rnd = new Random();
             int RandomAttackDamage = rnd.Next(MinDamage, MaxDamage);
-            Console.WriteLine($"Your damage is  {RandomAttackDamage}");
+            //Console.WriteLine($"Your damage is  {RandomAttackDamage}");
             return RandomAttackDamage;
         }
 

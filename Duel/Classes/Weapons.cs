@@ -8,13 +8,7 @@ namespace Classes
 {
     public class Weapons
     {
-        //public int[] Gorehowl = { 7, 15 };
-        //public int[] Warbreaker = { 5, 11 };
-        //public int[] LightsVengeance = { 6, 10 };
-        //public int MinDamage;
-        //public int MaxDamage;
-        //public string WeaponName;
-
+        #region Proprietati
         private int minDamage;
 
         public int MinDamage
@@ -38,5 +32,6 @@ namespace Classes
             get { return weaponName; }
             set { weaponName = value; }
         }
+        #endregion
     }
 }

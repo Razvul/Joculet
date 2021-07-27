@@ -17,7 +17,7 @@ namespace Classes
 
         public int MortalStrike()
         {
-            int crit = 0;
+            int crit;
             Random rdn = new Random();
             int HighDamage = rdn.Next(20, 50);
             crit = HighDamage * AttackValue(MinDamage, MaxDamage) / 100;
