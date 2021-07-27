@@ -20,7 +20,7 @@ namespace Classes
             int crit = 0;
             Random rdn = new Random();
             int HighDamage = rdn.Next(20, 50);
-            crit = HighDamage / 100 * AttackValue(MinDamage, MaxDamage);
+            crit = HighDamage * AttackValue(MinDamage, MaxDamage) / 100;
             return crit;
         }
     }
