@@ -75,8 +75,34 @@ namespace Duel
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Button_Strike.IsEnabled = false;
-            Button_Skill.IsEnabled = false;
+            Button_Special_Skill.IsEnabled = false;
             Button_Wait_Oponent.IsEnabled = false;
         }
+
+        #region Butoane
+        private void Button_StartFight_Click(object sender, RoutedEventArgs e)
+        {
+            Button_Strike.IsEnabled = true;
+            Button_Special_Skill.IsEnabled = true;
+        }
+
+        private void Button_Strike_Click(object sender, RoutedEventArgs e)
+        {
+            //DamageDone(ComboBox_Class_PLayer, ComboBox_Class_Oponent);
+            Button_Wait_Oponent.IsEnabled = true;
+            Button_Strike.IsEnabled = false;
+        }
+
+        private void Button_Wait_Oponent_Click(object sender, RoutedEventArgs e)
+        {
+            Button_Strike.IsEnabled = true;
+            Button_Wait_Oponent.IsEnabled = false;
+        }
+
+        private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
+        {
+            Button_Special_Skill.IsEnabled = false;
+        }
+        #endregion
     }
 }
