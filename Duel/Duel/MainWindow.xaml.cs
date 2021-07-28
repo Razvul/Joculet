@@ -31,8 +31,8 @@ namespace Duel
         public MainWindow()
         {
             InitializeComponent();
-            Varian = new Warrior(130, 3, 4, 7, "Varian");
-            Arthas = new Paladin(120, 2, 3, 5, "Arthas");
+            Varian = new Warrior(130, 3, 6, 7, "Varian");
+            Arthas = new Paladin(120, 3, 5, 6, "Arthas");
 
             ComboBox_Class_PLayer.Items.Add(Varian);
             ComboBox_Class_PLayer.Items.Add(Arthas);
@@ -51,13 +51,13 @@ namespace Duel
             Warbreaker = new Weapons()
             {
                 MinDamage = 5,
-                MaxDamage = 11,
+                MaxDamage = 14,
                 WeaponName = "Warbreaker"
             };
             LightsVengeance = new Weapons()
             {
                 MinDamage = 6,
-                MaxDamage = 10,
+                MaxDamage = 19,
                 WeaponName = "LightsVengeance"
             };
 
@@ -108,7 +108,7 @@ namespace Duel
         {
             var x = (CombatClass)ComboBox_Class_PLayer.SelectedItem;
             var y = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
-            string rezultat = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} left";
+            string rezultat = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} HP left";
             ListBox_DamageOutput.Items.Add(rezultat);
 
             Button_Wait_Oponent.IsEnabled = true;
@@ -117,6 +117,11 @@ namespace Duel
 
         private void Button_Wait_Oponent_Click(object sender, RoutedEventArgs e)
         {
+            var x = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
+            var y = (CombatClass)ComboBox_Class_PLayer.SelectedItem;
+            string rezultat = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} HP left";
+            ListBox_DamageOutput.Items.Add(rezultat);
+
             Button_Strike.IsEnabled = true;
             Button_Wait_Oponent.IsEnabled = false;
         }
