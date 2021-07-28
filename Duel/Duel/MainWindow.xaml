@@ -24,12 +24,12 @@
             VerticalAlignment="Top"
             HorizontalAlignment="Left">
             <Label
-                x:Name="Label_CLass_PLayer"
+                x:Name="Label_CLass_Player"
                 Content="Choose your class"
                 Width="120"
                 Height="25"/>
             <ComboBox
-                x:Name="ComboBox_Class_PLayer"
+                x:Name="ComboBox_Class_Player"
                 DisplayMemberPath="Name"
                 Width="120"
                 Height="25"/>

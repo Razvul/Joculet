@@ -19,7 +19,7 @@ namespace Classes
             Random rdn = new Random();
             int Heal = rdn.Next(15, 40);
             HP += Heal;
-            return this.HP;
+            return Heal;
         }
     }
 }
