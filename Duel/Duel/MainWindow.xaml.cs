@@ -27,16 +27,18 @@ namespace Duel
         private readonly Weapons Gorehowl;
         private readonly Weapons Warbreaker;
         private readonly Weapons LightsVengeance;
-        
+
+
         public MainWindow()
         {
             InitializeComponent();
             Varian = new Warrior(130, 3, 6, 7, "Varian");
             Arthas = new Paladin(120, 3, 5, 6, "Arthas");
+            var ArthasMaxHP = Arthas.HP;
 
-            ComboBox_Class_PLayer.Items.Add(Varian);
-            ComboBox_Class_PLayer.Items.Add(Arthas);
-            ComboBox_Class_PLayer.SelectedIndex = 0;
+            ComboBox_Class_Player.Items.Add(Varian);
+            ComboBox_Class_Player.Items.Add(Arthas);
+            ComboBox_Class_Player.SelectedIndex = 0;
 
             ComboBox_Class_Oponent.Items.Add(Varian);
             ComboBox_Class_Oponent.Items.Add(Arthas);
@@ -64,12 +66,12 @@ namespace Duel
             ComboBox_Weapon_Player.Items.Add(Gorehowl);
             ComboBox_Weapon_Player.Items.Add(Warbreaker);
             ComboBox_Weapon_Player.Items.Add(LightsVengeance);
-            ComboBox_Weapon_Player.SelectedIndex = 0;
+            ComboBox_Weapon_Player.SelectedIndex = 2;
 
             ComboBox_Weapon_Oponent.Items.Add(Gorehowl);
             ComboBox_Weapon_Oponent.Items.Add(Warbreaker);
             ComboBox_Weapon_Oponent.Items.Add(LightsVengeance);
-            ComboBox_Weapon_Oponent.SelectedIndex = 2;
+            ComboBox_Weapon_Oponent.SelectedIndex = 0;            
         }
 
         public int DamageDone(CombatClass fighter1, CombatClass fighter2)
@@ -89,7 +91,9 @@ namespace Duel
         #region Butoane
         private void Button_StartFight_Click(object sender, RoutedEventArgs e)
         {
-            var classPlayer = (CombatClass)ComboBox_Class_PLayer.SelectedItem;
+            ComboBoxes(false);
+
+            var classPlayer = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var classOponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
             var weaponPlayer = (Weapons)ComboBox_Weapon_Player.SelectedItem;
             var weaponOponent = (Weapons)ComboBox_Weapon_Oponent.SelectedItem;
@@ -106,7 +110,7 @@ namespace Duel
 
         private void Button_Strike_Click(object sender, RoutedEventArgs e)
         {
-            var x = (CombatClass)ComboBox_Class_PLayer.SelectedItem;
+            var x = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var y = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
             string rezultat = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} HP left";
             ListBox_DamageOutput.Items.Add(rezultat);
@@ -118,7 +122,7 @@ namespace Duel
         private void Button_Wait_Oponent_Click(object sender, RoutedEventArgs e)
         {
             var x = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
-            var y = (CombatClass)ComboBox_Class_PLayer.SelectedItem;
+            var y = (CombatClass)ComboBox_Class_Player.SelectedItem;
             string rezultat = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} HP left";
             ListBox_DamageOutput.Items.Add(rezultat);
 
@@ -129,7 +133,51 @@ namespace Duel
         private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
         {
             Button_Special_Skill.IsEnabled = false;
+            Button_Wait_Oponent.IsEnabled = true;
+            Button_Strike.IsEnabled = false;
+            string rezultat;
+
+            if (ComboBox_Class_Player.SelectedIndex == 0)
+            {
+                var crit = Varian.MortalStrike();
+                Arthas.HP -= crit;
+                rezultat = $"Varian dealt {crit} crit damage to Arthas\nArthas has {Arthas.HP} HP left";
+                ListBox_DamageOutput.Items.Add(rezultat);
+            }
+            else
+            {
+                var heal = Arthas.HolyLight();
+                rezultat = $"Arthas healed {heal} damage\nArthas has {Arthas.HP} HP left";
+                ListBox_DamageOutput.Items.Add(rezultat);
+            }
         }
         #endregion
+
+        public void ComboBoxes(bool x)
+        {
+            ComboBox_Class_Player.IsEnabled = x;
+            ComboBox_Class_Oponent.IsEnabled = x;
+            ComboBox_Weapon_Player.IsEnabled = x;
+            ComboBox_Weapon_Oponent.IsEnabled = x;
+        }
+
+        //public void Rezultat()
+        //{
+        //    if (Varian.HP < VarianMaxHP / 2 || Arthas.HP < ArthasMaxHP / 2)
+        //    {
+        //        Button_Strike.IsEnabled = false;
+        //        Button_Special_Skill.IsEnabled = false;
+        //        Button_Wait_Oponent.IsEnabled = false;
+
+        //        if (Varian.HP > Arthas.HP)
+        //        {
+        //            Label_Rezultat.Content = "Winner is Varian";
+        //        }
+        //        else
+        //        {
+        //            Label_Rezultat.Content = "Winner is Arthas";
+        //        }
+        //    }
+        //}
     }
 }
