@@ -22,11 +22,17 @@ namespace Duel
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly Warrior Varian;
+        private readonly Paladin Arthas;
+        private readonly Weapons Gorehowl;
+        private readonly Weapons Warbreaker;
+        private readonly Weapons LightsVengeance;
+        
         public MainWindow()
         {
             InitializeComponent();
-            Warrior Varian = new Warrior(130, 3, 4, 7, "Varian");
-            Paladin Arthas = new Paladin(120, 2, 3, 5, "Arthas");
+            Varian = new Warrior(130, 3, 4, 7, "Varian");
+            Arthas = new Paladin(120, 2, 3, 5, "Arthas");
 
             ComboBox_Class_PLayer.Items.Add(Varian);
             ComboBox_Class_PLayer.Items.Add(Arthas);
@@ -36,19 +42,19 @@ namespace Duel
             ComboBox_Class_Oponent.Items.Add(Arthas);
             ComboBox_Class_Oponent.SelectedIndex = 1;
 
-            Weapons Gorehowl = new Weapons()
+            Gorehowl = new Weapons()
             {
                 MinDamage = 7,
                 MaxDamage = 15,
                 WeaponName = "Gorehowl"
             };
-            Weapons Warbreaker = new Weapons()
+            Warbreaker = new Weapons()
             {
                 MinDamage = 5,
                 MaxDamage = 11,
                 WeaponName = "Warbreaker"
             };
-            Weapons LightsVengeance = new Weapons()
+            LightsVengeance = new Weapons()
             {
                 MinDamage = 6,
                 MaxDamage = 10,
@@ -66,10 +72,11 @@ namespace Duel
             ComboBox_Weapon_Oponent.SelectedIndex = 2;
         }
 
-        public void DamageDone(CombatClass fighter1, CombatClass fighter2)
+        public int DamageDone(CombatClass fighter1, CombatClass fighter2)
         {
             int attackValue = fighter1.AttackValue(fighter1.MinDamage, fighter1.MaxDamage) - fighter2.Armor;
             fighter2.HP -= attackValue;
+            return attackValue;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -82,13 +89,28 @@ namespace Duel
         #region Butoane
         private void Button_StartFight_Click(object sender, RoutedEventArgs e)
         {
+            var classPlayer = (CombatClass)ComboBox_Class_PLayer.SelectedItem;
+            var classOponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
+            var weaponPlayer = (Weapons)ComboBox_Weapon_Player.SelectedItem;
+            var weaponOponent = (Weapons)ComboBox_Weapon_Oponent.SelectedItem;
+
+            classPlayer.MinDamage += weaponPlayer.MinDamage;
+            classPlayer.MaxDamage += weaponPlayer.MaxDamage;
+
+            classOponent.MinDamage += weaponOponent.MinDamage;
+            classOponent.MaxDamage += weaponOponent.MaxDamage;
+
             Button_Strike.IsEnabled = true;
             Button_Special_Skill.IsEnabled = true;
         }
 
         private void Button_Strike_Click(object sender, RoutedEventArgs e)
         {
-            //DamageDone(ComboBox_Class_PLayer, ComboBox_Class_Oponent);
+            var x = (CombatClass)ComboBox_Class_PLayer.SelectedItem;
+            var y = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
+            string rezultat = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} left";
+            ListBox_DamageOutput.Items.Add(rezultat);
+
             Button_Wait_Oponent.IsEnabled = true;
             Button_Strike.IsEnabled = false;
         }
