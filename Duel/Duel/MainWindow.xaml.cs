@@ -32,8 +32,8 @@ namespace Duel
         public MainWindow()
         {
             InitializeComponent();
-            Varian = new Warrior(130, 3, 6, 7, "Varian");
-            Arthas = new Paladin(120, 3, 5, 6, "Arthas");
+            Varian = new Warrior(65, 3, 6, 7, "Varian");
+            Arthas = new Paladin(60, 3, 5, 6, "Arthas");
             var ArthasMaxHP = Arthas.HP;
 
             ComboBox_Class_Player.Items.Add(Varian);
@@ -104,6 +104,7 @@ namespace Duel
             classOponent.MinDamage += weaponOponent.MinDamage;
             classOponent.MaxDamage += weaponOponent.MaxDamage;
 
+            Button_StartFight.IsEnabled = false;
             Button_Strike.IsEnabled = true;
             Button_Special_Skill.IsEnabled = true;
         }
@@ -117,6 +118,23 @@ namespace Duel
 
             Button_Wait_Oponent.IsEnabled = true;
             Button_Strike.IsEnabled = false;
+
+            // daca n-am winner, fac astea
+            if (CheckWinner(x, y))
+            {
+                Button_Special_Skill.IsEnabled = false;
+                Button_Strike.IsEnabled = false;
+                Button_Wait_Oponent.IsEnabled = false;
+            }
+            if (x.HP <= 0)
+            {
+                Label_Rezultat.Content = $"Winner is {y.Name}";
+            }
+            if (y.HP <= 0)
+            {
+                Label_Rezultat.Content = $"Winner is {x.Name}";
+            }
+
         }
 
         private void Button_Wait_Oponent_Click(object sender, RoutedEventArgs e)
@@ -128,6 +146,23 @@ namespace Duel
 
             Button_Strike.IsEnabled = true;
             Button_Wait_Oponent.IsEnabled = false;
+
+            // daca n-am winner, fac astea
+            if (CheckWinner(x, y))
+            {
+                Button_Special_Skill.IsEnabled = false;
+                Button_Strike.IsEnabled = false;
+                Button_Wait_Oponent.IsEnabled = false;
+            }
+
+            if (x.HP <= 0)
+            {
+                Label_Rezultat.Content = $"Winner is {y.Name}";
+            }
+            if (y.HP <= 0)
+            {
+                Label_Rezultat.Content = $"Winner is {x.Name}";
+            }
         }
 
         private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
@@ -152,6 +187,20 @@ namespace Duel
             }
         }
         #endregion
+
+        public bool CheckWinner(CombatClass p1, CombatClass p2)
+        {
+            bool weHaveWinner = false;
+            if (p1.HP <= 0 || p2.HP <= 0)
+            {
+                //sectiunea rezultat updatat
+                // dezactivat butoane de strike si wait, ..
+                weHaveWinner = true;
+                
+                //Label_Rezultat.Content=""
+            }
+            return weHaveWinner;
+        }
 
         public void ComboBoxes(bool x)
         {
