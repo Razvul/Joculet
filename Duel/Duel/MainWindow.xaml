@@ -18,70 +18,72 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <StackPanel
             Grid.Row="1"
             Grid.Column="0"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Left">
-            <Label
+            Orientation="Horizontal">
+            <StackPanel>
+                <Label
                 x:Name="Label_CLass_Player"
                 Content="Choose your class"
                 Width="120"
                 Height="25"/>
-            <ComboBox
+                <ComboBox
                 x:Name="ComboBox_Class_Player"
                 DisplayMemberPath="Name"
                 Width="120"
                 Height="25"/>
-        </StackPanel>
-
-        <StackPanel
-            Grid.Row="1"
-            Grid.Column="0"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Right">
-            <Label
+            </StackPanel>
+            <StackPanel>
+                <Label
                 x:Name="Label_Class_Oponent"
                 Content="Choose your oponent"
                 Width="125"
                 Height="25"/>
-            <ComboBox
+                <ComboBox
                 x:Name="ComboBox_Class_Oponent"
                 DisplayMemberPath="Name"
                 Width="120"
                 Height="25"/>
+            </StackPanel>
         </StackPanel>
 
         <StackPanel
+            Grid.Row="2"
+            Grid.Column="0"
+            Orientation="Horizontal">
+            <StackPanel
             Grid.Row="2"
             Grid.Column="0"
             VerticalAlignment="Top"
             HorizontalAlignment="Left">
-            <Label
+                <Label
                 x:Name="Label_Weapon_Player"
                 Content="Choose your weapon"/>
-            <ComboBox
+                <ComboBox
                 x:Name="ComboBox_Weapon_Player"
                 DisplayMemberPath="WeaponName"
                 Width="120"
                 Height="25"/>
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel
-            Grid.Row="2"
-            Grid.Column="0"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Right">
-            <Label
+            <StackPanel
+                Grid.Row="2"
+                Grid.Column="0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right">
+                <Label
                 x:Name="Label_Weapon_Oponent"
                 Content="Choose Oponent weapon"/>
-            <ComboBox
+                <ComboBox
                 x:Name="ComboBox_Weapon_Oponent"
                 DisplayMemberPath="WeaponName"
                 Width="120"
                 Height="25"/>
+            </StackPanel>
         </StackPanel>
-        
+
         <Button
             x:Name="Button_StartFight"
             Content="Start Fight"

@@ -65,7 +65,6 @@ namespace Classes
             MaxDamage = objMaxDamage;
             Random rnd = new Random();
             int RandomAttackDamage = rnd.Next(MinDamage, MaxDamage);
-            //Console.WriteLine($"Your damage is  {RandomAttackDamage}");
             return RandomAttackDamage;
         }
 
