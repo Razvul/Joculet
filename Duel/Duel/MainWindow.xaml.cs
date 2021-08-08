@@ -60,7 +60,7 @@ namespace Duel
             {
                 MinDamage = 6,
                 MaxDamage = 19,
-                WeaponName = "LightsVengeance"
+                WeaponName = "Light's Vengeance"
             };
 
             ComboBox_Weapon_Player.Items.Add(Gorehowl);

@@ -8,9 +8,8 @@
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -93,19 +92,43 @@
             Height="25"
             Click="Button_StartFight_Click"/>
 
-        <ListBox
-            x:Name="ListBox_DamageOutput"
-            Grid.Row="1"
-            Grid.Column="2"
-            Grid.RowSpan="2"
-            HorizontalAlignment="Right"
-            Width="250"/>
-        
         <StackPanel
             Grid.Row="1"
             Grid.Column="2"
+            Orientation="Horizontal">
+            <StackPanel
+                Orientation="Vertical">
+                <TextBlock
+                    x:Name="Textblock_Player"
+                    Width="120"
+                    Height="25"/>
+                <TextBox
+                    x:Name="Textbox_HP_Player"
+                    Width="120"
+                    Height="25"/>
+            </StackPanel>
+
+            <ListBox
+                x:Name="ListBox_DamageOutput"
+                Width="250"/>
+            <StackPanel
+                Orientation="Vertical">
+                <TextBlock
+                    x:Name="Textblock_Oponent"
+                    Width="120"
+                    Height="25"/>
+                <TextBox
+                    x:Name="Textbox_HP_Oponent"
+                    Width="120"
+                    Height="25"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="2"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            VerticalAlignment="Bottom">
             <Button
                 x:Name="Button_Strike"
                 Content="Strike"
@@ -122,8 +145,8 @@
 
         <StackPanel
             Grid.Column="2"
-            Grid.Row="1"
-            HorizontalAlignment="Left"
+            Grid.Row="0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Bottom">
             <Button
                 x:Name="Button_Wait_Oponent"
