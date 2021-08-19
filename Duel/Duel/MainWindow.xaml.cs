@@ -92,28 +92,27 @@ namespace Duel
 
         private void Button_Strike_Click(object sender, RoutedEventArgs e)
         {
-            var x = (CombatClass)ComboBox_Class_Player.SelectedItem;
-            var y = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
+            var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
+            var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
 
-            string rezultat1 = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} HP left";
-            ListBox_DamageOutput.Items.Add(rezultat1);
-
-            string rezultat2 = $"{y.Name} dealt {DamageDone(y, x)} damage to {x.Name}\n{x.Name} has {x.HP} HP left";
-            ListBox_DamageOutput.Items.Add(rezultat2);
-
-            // daca n-am winner, fac astea
-            if (CheckWinner(x, y))
+            Attack(player, oponent);
+            if (oponent.HP < 0)
             {
-                Button_Special_Skill.IsEnabled = false;
-                Button_Strike.IsEnabled = false;
+                Label_HP_Oponent.Content = 0;
             }
-            if (x.HP <= 0)
+            else
             {
-                Label_Rezultat.Content = $"Winner is {y.Name}";
+                Label_HP_Oponent.Content = oponent.HP;
             }
-            if (y.HP <= 0)
+            
+            Attack(oponent, player);
+            if (player.HP < 0)
             {
-                Label_Rezultat.Content = $"Winner is {x.Name}";
+                Label_HP_Player.Content = 0;
+            }
+            else
+            {
+                Label_HP_Player.Content = player.HP;
             }
         }
 
@@ -139,6 +138,26 @@ namespace Duel
             //}
         }
         #endregion
+
+        private void Attack(CombatClass fighter1, CombatClass fighter2)
+        {
+            string rezultat = $"{fighter1.Name} dealt {DamageDone(fighter1, fighter2)} damage to {fighter2.Name}\n";
+            ListBox_DamageOutput.Items.Add(rezultat);
+
+            if (CheckWinner(fighter1, fighter2))// daca n-am winner, fac astea
+            {
+                Button_Special_Skill.IsEnabled = false;
+                Button_Strike.IsEnabled = false;
+            }
+            if (fighter1.HP <= 0)
+            {
+                Label_Rezultat.Content = $"Winner is {fighter2.Name}";
+            }
+            if (fighter2.HP <= 0)
+            {
+                Label_Rezultat.Content = $"Winner is {fighter1.Name}";
+            }
+        }
 
         public bool CheckWinner(CombatClass p1, CombatClass p2)
         {
