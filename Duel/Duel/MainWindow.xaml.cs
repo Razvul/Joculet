@@ -48,14 +48,7 @@ namespace Duel
             ComboBox_Weapon_Oponent.SelectedIndex = 0;
 
             
-        }
-
-        public int DamageDone(CombatClass fighter1, CombatClass fighter2)
-        {
-            int attackValue = fighter1.AttackValue(fighter1.MinDamage, fighter1.MaxDamage) - fighter2.Armor;
-            fighter2.HP -= attackValue;
-            return attackValue;
-        }
+        }     
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -96,24 +89,7 @@ namespace Duel
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
 
             Attack(player, oponent);
-            if (oponent.HP < 0)
-            {
-                Label_HP_Oponent.Content = 0;
-            }
-            else
-            {
-                Label_HP_Oponent.Content = oponent.HP;
-            }
-            
             Attack(oponent, player);
-            if (player.HP < 0)
-            {
-                Label_HP_Player.Content = 0;
-            }
-            else
-            {
-                Label_HP_Player.Content = player.HP;
-            }
         }
 
         private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
@@ -157,6 +133,31 @@ namespace Duel
             {
                 Label_Rezultat.Content = $"Winner is {fighter1.Name}";
             }
+
+            if (fighter1.HP < 0)
+            {
+                Label_HP_Player.Content = 0;
+            }
+            else
+            {
+                Label_HP_Player.Content = fighter1.HP;
+            }
+
+            if (fighter2.HP < 0)
+            {
+                Label_HP_Oponent.Content = 0;
+            }
+            else
+            {
+                Label_HP_Oponent.Content = fighter2.HP;
+            }
+        }
+
+        public int DamageDone(CombatClass fighter1, CombatClass fighter2)
+        {
+            int attackValue = fighter1.AttackValue(fighter1.MinDamage, fighter1.MaxDamage) - fighter2.Armor;
+            fighter2.HP -= attackValue;
+            return attackValue;
         }
 
         public bool CheckWinner(CombatClass p1, CombatClass p2)
