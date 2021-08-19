@@ -24,9 +24,6 @@ namespace Duel
     {
         private readonly Warrior Varian;
         private readonly Paladin Arthas;
-        private readonly Weapons Gorehowl;
-        private readonly Weapons Warbreaker;
-        private readonly Weapons LightsVengeance;
 
 
         public MainWindow()
@@ -36,16 +33,6 @@ namespace Duel
             var Classes = ObjectList.GetClasses();
             var Weapons = ObjectList.GetWeapons();
 
-            //Varian = new Warrior(65, 3, 6, 5, "Varian");
-            //Arthas = new Paladin(62, 3, 5, 6, "Arthas");
-            //var ArthasMaxHP = Arthas.HP;
-                        
-            //ComboBox_Class_Player.Items.Add(Varian);
-            //ComboBox_Class_Player.Items.Add(Arthas);
-
-            //ComboBox_Class_Oponent.Items.Add(Varian);
-            //ComboBox_Class_Oponent.Items.Add(Arthas);
-
             foreach (var Class in Classes)
             {
                 ComboBox_Class_Player.Items.Add(Class);
@@ -54,24 +41,6 @@ namespace Duel
             ComboBox_Class_Player.SelectedIndex = 0;
             ComboBox_Class_Oponent.SelectedIndex = 1;
 
-            //Gorehowl = new Weapons()
-            //{
-            //    MinDamage = 6,
-            //    MaxDamage = 12,
-            //    WeaponName = "Gorehowl"
-            //};
-            //Warbreaker = new Weapons()
-            //{
-            //    MinDamage = 5,
-            //    MaxDamage = 13,
-            //    WeaponName = "Warbreaker"
-            //};
-            //LightsVengeance = new Weapons()
-            //{
-            //    MinDamage = 6,
-            //    MaxDamage = 11,
-            //    WeaponName = "Light's Vengeance"
-            //};
 
             foreach (var Weapon in Weapons)
             {
@@ -79,14 +48,8 @@ namespace Duel
                 ComboBox_Weapon_Oponent.Items.Add(Weapon);
             }
 
-            //ComboBox_Weapon_Player.Items.Add(Gorehowl);
-            //ComboBox_Weapon_Player.Items.Add(Warbreaker);
-            //ComboBox_Weapon_Player.Items.Add(LightsVengeance);
             ComboBox_Weapon_Player.SelectedIndex = 2;
 
-            //ComboBox_Weapon_Oponent.Items.Add(Gorehowl);
-            //ComboBox_Weapon_Oponent.Items.Add(Warbreaker);
-            //ComboBox_Weapon_Oponent.Items.Add(LightsVengeance);
             ComboBox_Weapon_Oponent.SelectedIndex = 0;            
         }
 
@@ -151,7 +114,6 @@ namespace Duel
             {
                 Label_Rezultat.Content = $"Winner is {x.Name}";
             }
-
         }
 
         private void Button_Wait_Oponent_Click(object sender, RoutedEventArgs e)
@@ -227,24 +189,5 @@ namespace Duel
             ComboBox_Weapon_Player.IsEnabled = x;
             ComboBox_Weapon_Oponent.IsEnabled = x;
         }
-
-        //public void Rezultat()
-        //{
-        //    if (Varian.HP < VarianMaxHP / 2 || Arthas.HP < ArthasMaxHP / 2)
-        //    {
-        //        Button_Strike.IsEnabled = false;
-        //        Button_Special_Skill.IsEnabled = false;
-        //        Button_Wait_Oponent.IsEnabled = false;
-
-        //        if (Varian.HP > Arthas.HP)
-        //        {
-        //            Label_Rezultat.Content = "Winner is Varian";
-        //        }
-        //        else
-        //        {
-        //            Label_Rezultat.Content = "Winner is Arthas";
-        //        }
-        //    }
-        //}
     }
 }

@@ -43,6 +43,7 @@ namespace Classes
             MaxDamage = 13,
             WeaponName = "Ashbringer"
         };
+
         readonly List<CombatClass> ListaClase = new List<CombatClass>();
 
         private void LoadListClasses()
