@@ -103,7 +103,6 @@
                 Orientation="Vertical">
                 <Label
                     x:Name="Label_Player"
-                    Content="Name"
                     HorizontalContentAlignment="Center"
                     Width="120"
                     Height="25"/>
@@ -123,7 +122,6 @@
                 Orientation="Vertical">
                 <Label
                     x:Name="Label_Oponent"
-                    Content="Name"
                     HorizontalContentAlignment="Center"
                     Width="120"
                     Height="25"/>
@@ -153,19 +151,6 @@
                 Width="120"
                 Height="25"
                 Click="Button_Special_Skill_Click"/>
-        </StackPanel>
-
-        <StackPanel
-            Grid.Column="2"
-            Grid.Row="0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom">
-            <Button
-                x:Name="Button_Wait_Oponent"
-                Content="Wait Oponent"
-                Width="120"
-                Height="25"
-                Click="Button_Wait_Oponent_Click"/>
         </StackPanel>
 
         <Label

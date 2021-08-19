@@ -44,8 +44,10 @@ namespace Duel
                 ComboBox_Weapon_Oponent.Items.Add(Weapon);
             }
 
-            ComboBox_Weapon_Player.SelectedIndex = 2;
-            ComboBox_Weapon_Oponent.SelectedIndex = 0;            
+            ComboBox_Weapon_Player.SelectedIndex = 1;
+            ComboBox_Weapon_Oponent.SelectedIndex = 0;
+
+            
         }
 
         public int DamageDone(CombatClass fighter1, CombatClass fighter2)
@@ -59,7 +61,6 @@ namespace Duel
         {
             Button_Strike.IsEnabled = false;
             Button_Special_Skill.IsEnabled = false;
-            Button_Wait_Oponent.IsEnabled = false;
         }
 
         #region Butoane
@@ -78,6 +79,10 @@ namespace Duel
             classOponent.MinDamage += weaponOponent.MinDamage;
             classOponent.MaxDamage += weaponOponent.MaxDamage;
 
+            Label_CLass_Player.Content = classPlayer.Name;
+            Label_Class_Oponent.Content = classOponent.Name;//de ce nu arata?
+            Label_Class_Oponent.Content = "Garosh";
+
             Button_StartFight.IsEnabled = false;
             Button_Strike.IsEnabled = true;
             Button_Special_Skill.IsEnabled = false;
@@ -94,16 +99,11 @@ namespace Duel
             string rezultat2 = $"{y.Name} dealt {DamageDone(y, x)} damage to {x.Name}\n{x.Name} has {x.HP} HP left";
             ListBox_DamageOutput.Items.Add(rezultat2);
 
-            //Button_Wait_Oponent.IsEnabled = true;
-            //Button_Strike.IsEnabled = false;
-            //Button_Special_Skill.IsEnabled = false;
-
             // daca n-am winner, fac astea
             if (CheckWinner(x, y))
             {
                 Button_Special_Skill.IsEnabled = false;
                 Button_Strike.IsEnabled = false;
-                Button_Wait_Oponent.IsEnabled = false;
             }
             if (x.HP <= 0)
             {
@@ -113,35 +113,6 @@ namespace Duel
             {
                 Label_Rezultat.Content = $"Winner is {x.Name}";
             }
-        }
-
-        private void Button_Wait_Oponent_Click(object sender, RoutedEventArgs e)
-        {
-            //var x = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
-            //var y = (CombatClass)ComboBox_Class_Player.SelectedItem;
-            //string rezultat = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} HP left";
-            //ListBox_DamageOutput.Items.Add(rezultat);
-
-            //Button_Strike.IsEnabled = true;
-            //Button_Special_Skill.IsEnabled = true;
-            //Button_Wait_Oponent.IsEnabled = false;
-
-            //// daca n-am winner, fac astea
-            //if (CheckWinner(x, y))
-            //{
-            //    Button_Special_Skill.IsEnabled = false;
-            //    Button_Strike.IsEnabled = false;
-            //    Button_Wait_Oponent.IsEnabled = false;
-            //}
-
-            //if (x.HP <= 0)
-            //{
-            //    Label_Rezultat.Content = $"Winner is {y.Name}";
-            //}
-            //if (y.HP <= 0)
-            //{
-            //    Label_Rezultat.Content = $"Winner is {x.Name}";
-            //}
         }
 
         private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
