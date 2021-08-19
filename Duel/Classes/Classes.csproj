@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListOfObjects.cs" />
     <Compile Include="Paladin.cs" />
     <Compile Include="Warrior.cs" />
     <Compile Include="CombatClass.cs" />

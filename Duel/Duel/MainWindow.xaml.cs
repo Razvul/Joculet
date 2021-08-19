@@ -32,45 +32,61 @@ namespace Duel
         public MainWindow()
         {
             InitializeComponent();
-            Varian = new Warrior(65, 3, 6, 7, "Varian");
-            Arthas = new Paladin(60, 3, 5, 6, "Arthas");
-            var ArthasMaxHP = Arthas.HP;
+            var ObjectList = new ListOfObjects();
+            var Classes = ObjectList.GetClasses();
+            var Weapons = ObjectList.GetWeapons();
 
-            ComboBox_Class_Player.Items.Add(Varian);
-            ComboBox_Class_Player.Items.Add(Arthas);
+            //Varian = new Warrior(65, 3, 6, 5, "Varian");
+            //Arthas = new Paladin(62, 3, 5, 6, "Arthas");
+            //var ArthasMaxHP = Arthas.HP;
+                        
+            //ComboBox_Class_Player.Items.Add(Varian);
+            //ComboBox_Class_Player.Items.Add(Arthas);
+
+            //ComboBox_Class_Oponent.Items.Add(Varian);
+            //ComboBox_Class_Oponent.Items.Add(Arthas);
+
+            foreach (var Class in Classes)
+            {
+                ComboBox_Class_Player.Items.Add(Class);
+                ComboBox_Class_Oponent.Items.Add(Class);
+            }
             ComboBox_Class_Player.SelectedIndex = 0;
-
-            ComboBox_Class_Oponent.Items.Add(Varian);
-            ComboBox_Class_Oponent.Items.Add(Arthas);
             ComboBox_Class_Oponent.SelectedIndex = 1;
 
-            Gorehowl = new Weapons()
-            {
-                MinDamage = 7,
-                MaxDamage = 15,
-                WeaponName = "Gorehowl"
-            };
-            Warbreaker = new Weapons()
-            {
-                MinDamage = 5,
-                MaxDamage = 14,
-                WeaponName = "Warbreaker"
-            };
-            LightsVengeance = new Weapons()
-            {
-                MinDamage = 6,
-                MaxDamage = 19,
-                WeaponName = "Light's Vengeance"
-            };
+            //Gorehowl = new Weapons()
+            //{
+            //    MinDamage = 6,
+            //    MaxDamage = 12,
+            //    WeaponName = "Gorehowl"
+            //};
+            //Warbreaker = new Weapons()
+            //{
+            //    MinDamage = 5,
+            //    MaxDamage = 13,
+            //    WeaponName = "Warbreaker"
+            //};
+            //LightsVengeance = new Weapons()
+            //{
+            //    MinDamage = 6,
+            //    MaxDamage = 11,
+            //    WeaponName = "Light's Vengeance"
+            //};
 
-            ComboBox_Weapon_Player.Items.Add(Gorehowl);
-            ComboBox_Weapon_Player.Items.Add(Warbreaker);
-            ComboBox_Weapon_Player.Items.Add(LightsVengeance);
+            foreach (var Weapon in Weapons)
+            {
+                ComboBox_Weapon_Player.Items.Add(Weapon);
+                ComboBox_Weapon_Oponent.Items.Add(Weapon);
+            }
+
+            //ComboBox_Weapon_Player.Items.Add(Gorehowl);
+            //ComboBox_Weapon_Player.Items.Add(Warbreaker);
+            //ComboBox_Weapon_Player.Items.Add(LightsVengeance);
             ComboBox_Weapon_Player.SelectedIndex = 2;
 
-            ComboBox_Weapon_Oponent.Items.Add(Gorehowl);
-            ComboBox_Weapon_Oponent.Items.Add(Warbreaker);
-            ComboBox_Weapon_Oponent.Items.Add(LightsVengeance);
+            //ComboBox_Weapon_Oponent.Items.Add(Gorehowl);
+            //ComboBox_Weapon_Oponent.Items.Add(Warbreaker);
+            //ComboBox_Weapon_Oponent.Items.Add(LightsVengeance);
             ComboBox_Weapon_Oponent.SelectedIndex = 0;            
         }
 
