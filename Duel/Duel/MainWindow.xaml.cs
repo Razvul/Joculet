@@ -22,9 +22,6 @@ namespace Duel
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Warrior Varian;
-        private readonly Paladin Arthas;
-
 
         public MainWindow()
         {
@@ -41,7 +38,6 @@ namespace Duel
             ComboBox_Class_Player.SelectedIndex = 0;
             ComboBox_Class_Oponent.SelectedIndex = 1;
 
-
             foreach (var Weapon in Weapons)
             {
                 ComboBox_Weapon_Player.Items.Add(Weapon);
@@ -49,7 +45,6 @@ namespace Duel
             }
 
             ComboBox_Weapon_Player.SelectedIndex = 2;
-
             ComboBox_Weapon_Oponent.SelectedIndex = 0;            
         }
 
@@ -85,19 +80,23 @@ namespace Duel
 
             Button_StartFight.IsEnabled = false;
             Button_Strike.IsEnabled = true;
-            Button_Special_Skill.IsEnabled = true;
+            Button_Special_Skill.IsEnabled = false;
         }
 
         private void Button_Strike_Click(object sender, RoutedEventArgs e)
         {
             var x = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var y = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
-            string rezultat = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} HP left";
-            ListBox_DamageOutput.Items.Add(rezultat);
 
-            Button_Wait_Oponent.IsEnabled = true;
-            Button_Strike.IsEnabled = false;
-            Button_Special_Skill.IsEnabled = false;
+            string rezultat1 = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} HP left";
+            ListBox_DamageOutput.Items.Add(rezultat1);
+
+            string rezultat2 = $"{y.Name} dealt {DamageDone(y, x)} damage to {x.Name}\n{x.Name} has {x.HP} HP left";
+            ListBox_DamageOutput.Items.Add(rezultat2);
+
+            //Button_Wait_Oponent.IsEnabled = true;
+            //Button_Strike.IsEnabled = false;
+            //Button_Special_Skill.IsEnabled = false;
 
             // daca n-am winner, fac astea
             if (CheckWinner(x, y))
@@ -118,53 +117,53 @@ namespace Duel
 
         private void Button_Wait_Oponent_Click(object sender, RoutedEventArgs e)
         {
-            var x = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
-            var y = (CombatClass)ComboBox_Class_Player.SelectedItem;
-            string rezultat = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} HP left";
-            ListBox_DamageOutput.Items.Add(rezultat);
+            //var x = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
+            //var y = (CombatClass)ComboBox_Class_Player.SelectedItem;
+            //string rezultat = $"{x.Name} dealt {DamageDone(x, y)} damage to {y.Name}\n{y.Name} has {y.HP} HP left";
+            //ListBox_DamageOutput.Items.Add(rezultat);
 
-            Button_Strike.IsEnabled = true;
-            Button_Special_Skill.IsEnabled = true;
-            Button_Wait_Oponent.IsEnabled = false;
+            //Button_Strike.IsEnabled = true;
+            //Button_Special_Skill.IsEnabled = true;
+            //Button_Wait_Oponent.IsEnabled = false;
 
-            // daca n-am winner, fac astea
-            if (CheckWinner(x, y))
-            {
-                Button_Special_Skill.IsEnabled = false;
-                Button_Strike.IsEnabled = false;
-                Button_Wait_Oponent.IsEnabled = false;
-            }
+            //// daca n-am winner, fac astea
+            //if (CheckWinner(x, y))
+            //{
+            //    Button_Special_Skill.IsEnabled = false;
+            //    Button_Strike.IsEnabled = false;
+            //    Button_Wait_Oponent.IsEnabled = false;
+            //}
 
-            if (x.HP <= 0)
-            {
-                Label_Rezultat.Content = $"Winner is {y.Name}";
-            }
-            if (y.HP <= 0)
-            {
-                Label_Rezultat.Content = $"Winner is {x.Name}";
-            }
+            //if (x.HP <= 0)
+            //{
+            //    Label_Rezultat.Content = $"Winner is {y.Name}";
+            //}
+            //if (y.HP <= 0)
+            //{
+            //    Label_Rezultat.Content = $"Winner is {x.Name}";
+            //}
         }
 
         private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
         {
-            Button_Special_Skill.IsEnabled = false;
-            Button_Wait_Oponent.IsEnabled = true;
-            Button_Strike.IsEnabled = false;
-            string rezultat;
+            //Button_Special_Skill.IsEnabled = false;
+            //Button_Wait_Oponent.IsEnabled = true;
+            //Button_Strike.IsEnabled = false;
+            //string rezultat;
 
-            if (ComboBox_Class_Player.SelectedIndex == 0)
-            {
-                var crit = Varian.MortalStrike();
-                Arthas.HP -= crit;
-                rezultat = $"Varian dealt {crit} crit damage to Arthas\nArthas has {Arthas.HP} HP left";
-                ListBox_DamageOutput.Items.Add(rezultat);
-            }
-            else
-            {
-                var heal = Arthas.HolyLight();
-                rezultat = $"Arthas healed {heal} damage\nArthas has {Arthas.HP} HP left";
-                ListBox_DamageOutput.Items.Add(rezultat);
-            }
+            //if (ComboBox_Class_Player.SelectedIndex == 0)
+            //{
+            //    var crit = Varian.MortalStrike();
+            //    Arthas.HP -= crit;
+            //    rezultat = $"Varian dealt {crit} crit damage to Arthas\nArthas has {Arthas.HP} HP left";
+            //    ListBox_DamageOutput.Items.Add(rezultat);
+            //}
+            //else
+            //{
+            //    var heal = Arthas.HolyLight();
+            //    rezultat = $"Arthas healed {heal} damage\nArthas has {Arthas.HP} HP left";
+            //    ListBox_DamageOutput.Items.Add(rezultat);
+            //}
         }
         #endregion
 
