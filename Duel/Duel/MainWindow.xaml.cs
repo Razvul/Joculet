@@ -79,9 +79,11 @@ namespace Duel
             classOponent.MinDamage += weaponOponent.MinDamage;
             classOponent.MaxDamage += weaponOponent.MaxDamage;
 
-            Label_CLass_Player.Content = classPlayer.Name;
-            Label_Class_Oponent.Content = classOponent.Name;//de ce nu arata?
-            Label_Class_Oponent.Content = "Garosh";
+            Label_Player.Content = classPlayer.Name;
+            Label_Oponent.Content = classOponent.Name;
+
+            Label_HP_Player.Content = classPlayer.HP;
+            Label_HP_Oponent.Content = classOponent.HP;
 
             Button_StartFight.IsEnabled = false;
             Button_Strike.IsEnabled = true;
