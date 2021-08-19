@@ -118,6 +118,7 @@ namespace Duel
 
             Button_Wait_Oponent.IsEnabled = true;
             Button_Strike.IsEnabled = false;
+            Button_Special_Skill.IsEnabled = false;
 
             // daca n-am winner, fac astea
             if (CheckWinner(x, y))
@@ -145,6 +146,7 @@ namespace Duel
             ListBox_DamageOutput.Items.Add(rezultat);
 
             Button_Strike.IsEnabled = true;
+            Button_Special_Skill.IsEnabled = true;
             Button_Wait_Oponent.IsEnabled = false;
 
             // daca n-am winner, fac astea
