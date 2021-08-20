@@ -90,6 +90,24 @@ namespace Duel
 
             Attack(player, oponent);
             Attack(oponent, player);
+
+            if (player.HP < 0)
+            {
+                Label_HP_Player.Content = 0;
+            }
+            else
+            {
+                Label_HP_Player.Content = player.HP;
+            }
+
+            if (oponent.HP < 0)
+            {
+                Label_HP_Oponent.Content = 0;
+            }
+            else
+            {
+                Label_HP_Oponent.Content = oponent.HP;
+            }
         }
 
         private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
@@ -125,32 +143,18 @@ namespace Duel
                 Button_Special_Skill.IsEnabled = false;
                 Button_Strike.IsEnabled = false;
             }
-            if (fighter1.HP <= 0)
+            if (fighter1.HP <= 0 & fighter2.HP <= 0)
+            {
+                Label_Rezultat.Content = "We have a draw";
+            }
+            else if (fighter1.HP <= 0)
             {
                 Label_Rezultat.Content = $"Winner is {fighter2.Name}";
             }
-            if (fighter2.HP <= 0)
+            else if (fighter2.HP <= 0)
             {
                 Label_Rezultat.Content = $"Winner is {fighter1.Name}";
-            }
-
-            if (fighter1.HP < 0)
-            {
-                Label_HP_Player.Content = 0;
-            }
-            else
-            {
-                Label_HP_Player.Content = fighter1.HP;
-            }
-
-            if (fighter2.HP < 0)
-            {
-                Label_HP_Oponent.Content = 0;
-            }
-            else
-            {
-                Label_HP_Oponent.Content = fighter2.HP;
-            }
+            }            
         }
 
         public int DamageDone(CombatClass fighter1, CombatClass fighter2)
