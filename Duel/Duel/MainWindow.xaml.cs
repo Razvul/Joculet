@@ -80,7 +80,7 @@ namespace Duel
 
             Button_StartFight.IsEnabled = false;
             Button_Strike.IsEnabled = true;
-            Button_Special_Skill.IsEnabled = false;
+            Button_Special_Skill.IsEnabled = true;
         }
 
         private void Button_Strike_Click(object sender, RoutedEventArgs e)
@@ -89,6 +89,7 @@ namespace Duel
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
 
             Attack(player, oponent);
+
             Attack(oponent, player);
 
             if (player.HP < 0)
@@ -112,24 +113,19 @@ namespace Duel
 
         private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
         {
-            //Button_Special_Skill.IsEnabled = false;
-            //Button_Wait_Oponent.IsEnabled = true;
-            //Button_Strike.IsEnabled = false;
-            //string rezultat;
+            var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
+            var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
 
-            //if (ComboBox_Class_Player.SelectedIndex == 0)
-            //{
-            //    var crit = Varian.MortalStrike();
-            //    Arthas.HP -= crit;
-            //    rezultat = $"Varian dealt {crit} crit damage to Arthas\nArthas has {Arthas.HP} HP left";
-            //    ListBox_DamageOutput.Items.Add(rezultat);
-            //}
-            //else
-            //{
-            //    var heal = Arthas.HolyLight();
-            //    rezultat = $"Arthas healed {heal} damage\nArthas has {Arthas.HP} HP left";
-            //    ListBox_DamageOutput.Items.Add(rezultat);
-            //}
+            Warrior razboinic;
+
+            if (player.Name == "Varian" || player.Name == "Garrosh")
+            {
+                razboinic = (Warrior)player;
+                player.MaxDamage = razboinic.MortalStrike();
+            }
+
+            string mesaj = "Special skill used!";
+            ListBox_DamageOutput.Items.Add(mesaj);
         }
         #endregion
 
