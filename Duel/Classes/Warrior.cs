@@ -8,8 +8,8 @@ namespace Classes
 {
     public class Warrior : CombatClass
     {
-        public Warrior(int objHP, int objMinDamage, int objMaxDamage, int objArmor, string objName):
-            base(objHP, objMinDamage, objMaxDamage, objArmor, objName)
+        public Warrior(int objHP, int objMinDamage, int objMaxDamage, int objArmor, string objName, string objClass):
+            base(objHP, objMinDamage, objMaxDamage, objArmor, objName, objClass)
         {
         }
         public int Weapon;

@@ -8,8 +8,8 @@ namespace Classes
 {
     public class Paladin:CombatClass
     {
-        public Paladin(int objHP, int objMinDamage, int objMaxDamage, int objArmor, string objName) : 
-            base(objHP, objMinDamage, objMaxDamage, objArmor, objName)
+        public Paladin(int objHP, int objMinDamage, int objMaxDamage, int objArmor, string objName, string objClass) : 
+            base(objHP, objMinDamage, objMaxDamage, objArmor, objName, objClass)
         {
                 
         }

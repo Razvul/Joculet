@@ -48,16 +48,27 @@ namespace Classes
             get { return name; }
             set { name = value; }
         }
+
+        private string classType;
+
+        public string ClassType
+        {
+            get { return classType; }
+            set { classType = value; }
+        }
+
         #endregion
 
-        public CombatClass(int objHP, int objMinDamage, int objMaxDamage, int objArmor, string objName)
+        public CombatClass(int objHP, int objMinDamage, int objMaxDamage, int objArmor, string objName, string objClass)
         {
             HP = objHP;
             MinDamage = objMinDamage;
             MaxDamage = objMaxDamage;
             Armor = objArmor;
             Name = objName;
+            ClassType = objClass;
         }
+
 
         public int AttackValue(int objMinDamage, int objMaxDamage)
         {
