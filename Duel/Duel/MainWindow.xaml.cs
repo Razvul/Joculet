@@ -135,10 +135,11 @@ namespace Duel
             if (player.ClassType == "Paladin")
             {
                 Paladin luptator = (Paladin)player;
+                int curentHP = player.HP;
 
                 int heal = luptator.HolyLight();
-                player.HP += heal;
-                Label_HP_Player.Content = player.HP;
+                curentHP += heal;
+                Label_HP_Player.Content = curentHP;
 
                 string attack = $"{player.Name} healed {heal} damage";
                 ListBox_DamageOutput.Items.Add(attack);
