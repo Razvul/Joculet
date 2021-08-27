@@ -8,11 +8,11 @@ namespace Classes
 {
     public class ListOfObjects
     {
-        private readonly Warrior Varian = new Warrior(65, 3, 6, 5, "Varian");
-        private readonly Warrior Garrosh = new Warrior(70, 4, 6, 5, "Garrosh");
+        private readonly Warrior Varian = new Warrior(65, 3, 6, 5, "Varian", "Warrior");
+        private readonly Warrior Garrosh = new Warrior(70, 4, 6, 5, "Garrosh", "Warrior");
 
-        private readonly Paladin Arthas = new Paladin(62, 3, 5, 6, "Arthas");
-        private readonly Paladin Tirion = new Paladin(63, 3, 6, 4, "Tirion");
+        private readonly Paladin Arthas = new Paladin(62, 3, 5, 6, "Arthas", "Paladin");
+        private readonly Paladin Tirion = new Paladin(63, 3, 6, 4, "Tirion", "Paladin");
 
         public ListOfObjects()
         {

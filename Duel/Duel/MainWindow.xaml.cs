@@ -115,17 +115,27 @@ namespace Duel
         {
             var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
-
-            Warrior razboinic;
-
-            if (player.Name == "Varian" || player.Name == "Garrosh")
-            {
-                razboinic = (Warrior)player;
-                player.MaxDamage = razboinic.MortalStrike();
-            }
-
+                      
             string mesaj = "Special skill used!";
             ListBox_DamageOutput.Items.Add(mesaj);
+
+            if (player.ClassType == "Warrior")
+            {
+                Warrior razboinic = (Warrior)player;
+
+                int critDmg = razboinic.MortalStrike();
+                oponent.HP -= critDmg;
+                Label_HP_Oponent.Content = oponent.HP;
+
+                string attack = $"{razboinic.Name} dealt {critDmg} to {oponent.Name}";
+                ListBox_DamageOutput.Items.Add(attack);
+                
+            }
+
+            if (player.ClassType == "Paladin")
+            {
+
+            }           
         }
         #endregion
 
