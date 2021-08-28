@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Classes;
 
 
@@ -83,23 +84,13 @@ namespace Duel
             Button_Special_Skill.IsEnabled = true;
         }
 
-        private void Button_Strike_Click(object sender, RoutedEventArgs e)
+        private async void Button_Strike_Click(object sender, RoutedEventArgs e)
         {
             var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
 
             Attack(player, oponent);
-
-            Attack(oponent, player);
-
-            if (player.HP < 0)
-            {
-                Label_HP_Player.Content = 0;
-            }
-            else
-            {
-                Label_HP_Player.Content = player.HP;
-            }
+            Button_Strike.IsEnabled = false;
 
             if (oponent.HP < 0)
             {
@@ -109,6 +100,20 @@ namespace Duel
             {
                 Label_HP_Oponent.Content = oponent.HP;
             }
+
+            await Task.Delay(1000);
+
+            Attack(oponent, player);
+            Button_Strike.IsEnabled = true;
+
+            if (player.HP < 0)
+            {
+                Label_HP_Player.Content = 0;
+            }
+            else
+            {
+                Label_HP_Player.Content = player.HP;
+            }            
         }
 
         private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
@@ -127,7 +132,7 @@ namespace Duel
                 oponent.HP -= critDmg;
                 Label_HP_Oponent.Content = oponent.HP;
 
-                string attack = $"{razboinic.Name} dealt {critDmg} to {oponent.Name}";
+                string attack = $"{razboinic.Name} dealt {critDmg} critical damage to {oponent.Name}";
                 ListBox_DamageOutput.Items.Add(attack);
                 
             }
