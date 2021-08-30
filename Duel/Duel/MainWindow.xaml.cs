@@ -23,6 +23,8 @@ namespace Duel
     /// </summary>
     public partial class MainWindow : Window
     {
+        public DispatcherTimer timer;
+        
 
         public MainWindow()
         {
@@ -30,6 +32,8 @@ namespace Duel
             var ObjectList = new ListOfObjects();
             var Classes = ObjectList.GetClasses();
             var Weapons = ObjectList.GetWeapons();
+
+            LoadDispatcher();
 
             foreach (var Class in Classes)
             {
@@ -84,7 +88,7 @@ namespace Duel
             Button_Special_Skill.IsEnabled = true;
         }
 
-        private async void Button_Strike_Click(object sender, RoutedEventArgs e)
+        private /*async*/ void Button_Strike_Click(object sender, RoutedEventArgs e)
         {
             var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
@@ -101,19 +105,8 @@ namespace Duel
                 Label_HP_Oponent.Content = oponent.HP;
             }
 
-            await Task.Delay(1000);
-
-            Attack(oponent, player);
-            Button_Strike.IsEnabled = true;
-
-            if (player.HP < 0)
-            {
-                Label_HP_Player.Content = 0;
-            }
-            else
-            {
-                Label_HP_Player.Content = player.HP;
-            }            
+            //await Task.Delay(10000);
+            timer.Start();         
         }
 
         private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
@@ -152,6 +145,7 @@ namespace Duel
         }
         #endregion
 
+        #region Functii
         private void Attack(CombatClass fighter1, CombatClass fighter2)
         {
             string rezultat = $"{fighter1.Name} dealt {DamageDone(fighter1, fighter2)} damage to {fighter2.Name}\n";
@@ -162,7 +156,7 @@ namespace Duel
                 Button_Special_Skill.IsEnabled = false;
                 Button_Strike.IsEnabled = false;
             }
-            if (fighter1.HP <= 0 & fighter2.HP <= 0)
+            if (fighter1.HP <= 0 && fighter2.HP <= 0)
             {
                 Label_Rezultat.Content = "We have a draw";
             }
@@ -196,6 +190,37 @@ namespace Duel
             }
             return weHaveWinner;
         }
+        #endregion
+
+        #region Timer
+        private void LoadDispatcher()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tick;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
+            var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
+
+            timer.Stop();//pun aici a doua chemare a functiei
+            Attack(oponent, player);
+            // trebuie sa fac variabilele Player si Oponent globale
+            Button_Strike.IsEnabled = true;
+
+            if (player.HP < 0)
+            {
+                Label_HP_Player.Content = 0;
+            }
+            else
+            {
+                Label_HP_Player.Content = player.HP;
+            }
+
+        }
+        #endregion
 
         public void ComboBoxes(bool x)
         {
