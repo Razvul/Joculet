@@ -24,7 +24,7 @@ namespace Duel
     public partial class MainWindow : Window
     {
         public DispatcherTimer timer;
-        
+        private int strikeCounter;
 
         public MainWindow()
         {
@@ -85,7 +85,7 @@ namespace Duel
 
             Button_StartFight.IsEnabled = false;
             Button_Strike.IsEnabled = true;
-            Button_Special_Skill.IsEnabled = true;
+            Button_Special_Skill.IsEnabled = false;
         }
 
         private /*async*/ void Button_Strike_Click(object sender, RoutedEventArgs e)
@@ -106,7 +106,14 @@ namespace Duel
             }
 
             //await Task.Delay(10000);
-            timer.Start();         
+            timer.Start();
+
+            strikeCounter++;
+
+            if (strikeCounter % 3 == 0)
+            {
+                Button_Special_Skill.IsEnabled = true;
+            }
         }
 
         private void Button_Special_Skill_Click(object sender, RoutedEventArgs e)
@@ -141,7 +148,9 @@ namespace Duel
 
                 string attack = $"{player.Name} healed {heal} damage";
                 ListBox_DamageOutput.Items.Add(attack);
-            }           
+            }
+
+            Button_Special_Skill.IsEnabled = false;
         }
         #endregion
 
@@ -196,7 +205,7 @@ namespace Duel
         private void LoadDispatcher()
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Interval = TimeSpan.FromSeconds(2);
             timer.Tick += Timer_Tick;
         }
 
