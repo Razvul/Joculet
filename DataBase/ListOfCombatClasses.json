@@ -1,0 +1,37 @@
+[
+    {
+        "HP": "65",
+        "MinDamage": "3",
+        "MaxDamage": "6",
+        "Armor": "5",
+        "Name": "Varian",
+        "ClassType": "Warrior"
+    },
+
+    {
+        "HP": "70",
+        "MinDamage": "4",
+        "MaxDamage": "6",
+        "Armor": "5",
+        "Name": "Garrosh",
+        "ClassType": "Warrior"
+    },
+
+    {
+        "HP": "62",
+        "MinDamage": "3",
+        "MaxDamage": "5",
+        "Armor": "6",
+        "Name": "Arthas",
+        "ClassType": "Paladin"
+    },
+
+    {
+        "HP": "63",
+        "MinDamage": "3",
+        "MaxDamage": "6",
+        "Armor": "4",
+        "Name": "Tirion",
+        "ClassType": "Paladin"
+    }
+]

@@ -1,0 +1,25 @@
+[
+    {
+        "MinDamage": "6",
+        "MaxDamage": "12",
+        "WeaponName": "Gorehowl"
+    },
+
+    {
+        "MinDamage": "5",
+        "MaxDamage": "13",
+        "WeaponName": "Warbreaker"
+    },
+
+    {
+        "MinDamage": "6",
+        "MaxDamage": "11",
+        "WeaponName": "Light's Vengeance"
+    },
+
+    {
+        "MinDamage": "5",
+        "MaxDamage": "13",
+        "WeaponName": "Ashbringer"
+    }
+]
