@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Classes
 {
@@ -14,9 +16,73 @@ namespace Classes
         private readonly Paladin Arthas = new Paladin(62, 3, 5, 6, "Arthas", "Paladin");
         private readonly Paladin Tirion = new Paladin(63, 3, 6, 4, "Tirion", "Paladin");
 
+        private List<CombatClass> _listaLuptatori = new List<CombatClass>();
+        private List<Weapons> _listaArme = new List<Weapons>();
+
+        #region Singleton
+        private static readonly ListOfObjects _luptatori = new ListOfObjects();
+        private static readonly ListOfObjects _arme = new ListOfObjects();
+
         public ListOfObjects()
         {
-            LoadList();
+            //LoadList();
+            LoadListe();
+        }
+
+        public static ListOfObjects GetLuptatori()
+        {
+            return _luptatori;
+        }
+
+        public static ListOfObjects GetArme()
+        {
+            return _arme;
+        }
+        #endregion
+
+        private void LoadListe()
+        {
+            LoadArme();
+            LoadLuptatori();
+        }
+
+        private void LoadLuptatori()
+        {
+            var pathLuptatori = $@"E:\VS_Project\Joculet\DataBase\ListOfCombatClasses.json";
+            using (StreamReader sr = new StreamReader(pathLuptatori))
+            {
+                string y = sr.ReadToEnd();
+                _listaLuptatori = JsonConvert.DeserializeObject<List<CombatClass>>(y);
+            }
+        }
+
+        private void LoadArme()
+        {
+            var pathArme = $@"E:\VS_Project\Joculet\DataBase\ListOfWeapons.json";
+
+            using (StreamReader sr = new StreamReader(pathArme))
+            {
+                string y = sr.ReadToEnd();
+                _listaArme = JsonConvert.DeserializeObject<List<Weapons>>(y);
+            }
+        }
+
+        public void SaveClassList()
+        {
+            var pathLuptatori = $@"E:\VS_Project\Joculet\DataBase\ListOfCombatClasses.json";
+
+            var textLuptatori = JsonConvert.SerializeObject(_listaLuptatori);
+
+            File.WriteAllText(pathLuptatori, textLuptatori);
+        }
+
+        public void SaveWeaponList()
+        {
+            var pathArme = $@"E:\VS_Project\Joculet\DataBase\ListOfWeapons.json";
+
+            var textArme = JsonConvert.SerializeObject(_listaArme);
+
+            File.WriteAllText(pathArme, textArme);
         }
 
         private readonly Weapons Gorehowl = new Weapons()
@@ -72,12 +138,12 @@ namespace Classes
 
         public List<Weapons> GetWeapons()
         {
-            return ListaArme;
+            return _listaArme;
         }
 
         public List<CombatClass> GetClasses()
         {
-            return ListaClase;
+            return _listaLuptatori;
         }
     }
 }

@@ -26,16 +26,20 @@ namespace Duel
         public DispatcherTimer timer;
         private int strikeCounter;
 
+        private readonly ListOfObjects _listaLuptatori = ListOfObjects.GetLuptatori();
+        private readonly ListOfObjects _listaArme = ListOfObjects.GetArme();
+
         public MainWindow()
         {
             InitializeComponent();
-            var ObjectList = new ListOfObjects();
-            var Classes = ObjectList.GetClasses();
-            var Weapons = ObjectList.GetWeapons();
+            Populate();
+            //var ObjectList = new ListOfObjects();
+            /*var Classes = ObjectList.GetClasses();
+            var Weapons = ObjectList.GetWeapons();*/
 
             LoadDispatcher();
 
-            foreach (var Class in Classes)
+            /*foreach (var Class in Classes)
             {
                 ComboBox_Class_Player.Items.Add(Class);
                 ComboBox_Class_Oponent.Items.Add(Class);
@@ -50,7 +54,7 @@ namespace Duel
             }
 
             ComboBox_Weapon_Player.SelectedIndex = 1;
-            ComboBox_Weapon_Oponent.SelectedIndex = 0;
+            ComboBox_Weapon_Oponent.SelectedIndex = 0;*/
 
             
         }     
@@ -132,7 +136,7 @@ namespace Duel
                 oponent.HP -= critDmg;
                 Label_HP_Oponent.Content = oponent.HP;
 
-                string attack = $"{razboinic.Name} dealt {critDmg} critical damage to {oponent.Name}";
+                string attack = $"{razboinic.Name} dealt {critDmg} critical damage to {oponent.Name}\n";
                 ListBox_DamageOutput.Items.Add(attack);
                 
             }
@@ -146,7 +150,7 @@ namespace Duel
                 curentHP += heal;
                 Label_HP_Player.Content = curentHP;
 
-                string attack = $"{player.Name} healed {heal} damage";
+                string attack = $"{player.Name} healed {heal} damage\n";
                 ListBox_DamageOutput.Items.Add(attack);
             }
 
@@ -205,7 +209,7 @@ namespace Duel
         private void LoadDispatcher()
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
         }
 
@@ -216,7 +220,6 @@ namespace Duel
 
             timer.Stop();//pun aici a doua chemare a functiei
             Attack(oponent, player);
-            // trebuie sa fac variabilele Player si Oponent globale
             Button_Strike.IsEnabled = true;
 
             if (player.HP < 0)
@@ -227,7 +230,6 @@ namespace Duel
             {
                 Label_HP_Player.Content = player.HP;
             }
-
         }
         #endregion
 
@@ -237,6 +239,40 @@ namespace Duel
             ComboBox_Class_Oponent.IsEnabled = x;
             ComboBox_Weapon_Player.IsEnabled = x;
             ComboBox_Weapon_Oponent.IsEnabled = x;
+        }
+
+        private void Populate()
+        {
+            PopulateClasses();
+            PopulateWeapons();
+        }
+
+        private void PopulateClasses()
+        {
+            var classList = _listaLuptatori.GetClasses();
+            foreach (var luptator in classList.OrderBy(x=>x.Name))
+            {
+                ComboBox_Class_Player.Items.Add(luptator);
+                ComboBox_Class_Oponent.Items.Add(luptator);
+            }
+            //ComboBox_Class_Player.DisplayMemberPath = "Name";
+            ComboBox_Class_Player.SelectedIndex = 0;
+            //ComboBox_Class_Oponent.DisplayMemberPath = "Name";
+            ComboBox_Class_Oponent.SelectedIndex = 1;
+        }
+
+        private void PopulateWeapons()
+        {
+            var weaponList = _listaArme.GetWeapons();
+            foreach (var arma in weaponList.OrderBy(x=>x.WeaponName))
+            {
+                ComboBox_Weapon_Player.Items.Add(arma);
+                ComboBox_Weapon_Oponent.Items.Add(arma);
+            }
+            //ComboBox_Weapon_Player.DisplayMemberPath = "WeaponName";
+            ComboBox_Weapon_Player.SelectedIndex = 0;
+            //ComboBox_Weapon_Oponent.DisplayMemberPath = "WeaponName";
+            ComboBox_Weapon_Oponent.SelectedIndex = 2;
         }
     }
 }

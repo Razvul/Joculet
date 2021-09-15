@@ -78,7 +78,5 @@ namespace Classes
             int RandomAttackDamage = rnd.Next(MinDamage, MaxDamage);
             return RandomAttackDamage;
         }
-
-
     }
 }
