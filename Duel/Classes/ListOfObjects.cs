@@ -27,6 +27,7 @@ namespace Classes
         {
             //LoadList();
             LoadListe();
+            //SaveListe();
         }
 
         public static ListOfObjects GetLuptatori()
@@ -44,6 +45,12 @@ namespace Classes
         {
             LoadArme();
             LoadLuptatori();
+        }
+
+        private void SaveListe()
+        {
+            SaveClassList();
+            SaveWeaponList();
         }
 
         private void LoadLuptatori()

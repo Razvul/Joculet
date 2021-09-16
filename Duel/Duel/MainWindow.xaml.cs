@@ -130,7 +130,7 @@ namespace Duel
 
             if (player.ClassType == "Warrior")
             {
-                Warrior razboinic = (Warrior)player;
+                Warrior razboinic = new Warrior(player.HP, player.MinDamage, player.MaxDamage, player.Armor, player.Name, player.ClassType);
 
                 int critDmg = razboinic.MortalStrike();
                 oponent.HP -= critDmg;
@@ -143,7 +143,7 @@ namespace Duel
 
             if (player.ClassType == "Paladin")
             {
-                Paladin luptator = (Paladin)player;
+                Paladin luptator = new Paladin(player.HP, player.MinDamage, player.MaxDamage, player.Armor, player.Name, player.ClassType);
                 int curentHP = player.HP;
 
                 int heal = luptator.HolyLight();
@@ -169,18 +169,7 @@ namespace Duel
                 Button_Special_Skill.IsEnabled = false;
                 Button_Strike.IsEnabled = false;
             }
-            if (fighter1.HP <= 0 && fighter2.HP <= 0)
-            {
-                Label_Rezultat.Content = "We have a draw";
-            }
-            else if (fighter1.HP <= 0)
-            {
-                Label_Rezultat.Content = $"Winner is {fighter2.Name}";
-            }
-            else if (fighter2.HP <= 0)
-            {
-                Label_Rezultat.Content = $"Winner is {fighter1.Name}";
-            }            
+            
         }
 
         public int DamageDone(CombatClass fighter1, CombatClass fighter2)
@@ -229,6 +218,22 @@ namespace Duel
             else
             {
                 Label_HP_Player.Content = player.HP;
+            }
+
+            if (player.HP <= 0 && oponent.HP <= 0)
+            {
+                Label_Rezultat.Content = "We have a draw";
+                Button_Strike.IsEnabled = false;
+            }
+            else if (player.HP <= 0)
+            {
+                Label_Rezultat.Content = $"Winner is {oponent.Name}";
+                Button_Strike.IsEnabled = false;
+            }
+            else if (oponent.HP <= 0)
+            {
+                Label_Rezultat.Content = $"Winner is {player.Name}";
+                Button_Strike.IsEnabled = false;
             }
         }
         #endregion
