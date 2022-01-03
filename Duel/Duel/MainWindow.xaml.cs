@@ -75,11 +75,13 @@ namespace Duel
             var weaponPlayer = (Weapons)ComboBox_Weapon_Player.SelectedItem;
             var weaponOponent = (Weapons)ComboBox_Weapon_Oponent.SelectedItem;
 
+            #region Weapon Equipment
             classPlayer.MinDamage += weaponPlayer.MinDamage;
             classPlayer.MaxDamage += weaponPlayer.MaxDamage;
 
             classOponent.MinDamage += weaponOponent.MinDamage;
             classOponent.MaxDamage += weaponOponent.MaxDamage;
+            #endregion
 
             Label_Player.Content = classPlayer.Name;
             Label_Oponent.Content = classOponent.Name;
@@ -97,7 +99,14 @@ namespace Duel
             var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
 
-            Attack(player, oponent);
+            //Attack(player, oponent);
+            ListViewItem itemNou = new ListViewItem
+            {
+                Content = Attack(player, oponent),
+                Foreground = Brushes.Blue
+            };
+            ListView_DamageOutput.Items.Add(itemNou);
+
             Button_Strike.IsEnabled = false;
 
             if (oponent.HP < 0)
@@ -124,9 +133,6 @@ namespace Duel
         {
             var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
-                      
-            string mesaj = "Special skill used!";
-            ListBox_DamageOutput.Items.Add(mesaj);
 
             if (player.ClassType == "Warrior")
             {
@@ -136,22 +142,20 @@ namespace Duel
                 oponent.HP -= critDmg;
                 Label_HP_Oponent.Content = oponent.HP;
 
-                string attack = $"{razboinic.Name} dealt {critDmg} critical damage to {oponent.Name}\n";
-                ListBox_DamageOutput.Items.Add(attack);
-                
+                string attack = $"{razboinic.Name} dealt {critDmg} critical damage to {oponent.Name}";
+                ListView_DamageOutput.Items.Add(attack);
             }
 
             if (player.ClassType == "Paladin")
             {
                 Paladin luptator = new Paladin(player.HP, player.MinDamage, player.MaxDamage, player.Armor, player.Name, player.ClassType);
-                int curentHP = player.HP;
 
                 int heal = luptator.HolyLight();
-                curentHP += heal;
-                Label_HP_Player.Content = curentHP;
+                player.HP += heal;
+                Label_HP_Player.Content = player.HP;
 
-                string attack = $"{player.Name} healed {heal} damage\n";
-                ListBox_DamageOutput.Items.Add(attack);
+                string attack = $"{player.Name} healed {heal} damage";
+                ListView_DamageOutput.Items.Add(attack);
             }
 
             Button_Special_Skill.IsEnabled = false;
@@ -159,17 +163,16 @@ namespace Duel
         #endregion
 
         #region Functii
-        private void Attack(CombatClass fighter1, CombatClass fighter2)
+        private string Attack(CombatClass fighter1, CombatClass fighter2)
         {
-            string rezultat = $"{fighter1.Name} dealt {DamageDone(fighter1, fighter2)} damage to {fighter2.Name}\n";
-            ListBox_DamageOutput.Items.Add(rezultat);
+            string rezultat = $"{fighter1.Name} dealt {DamageDone(fighter1, fighter2)} damage to {fighter2.Name}";
 
             if (CheckWinner(fighter1, fighter2))// daca n-am winner, fac astea
             {
                 Button_Special_Skill.IsEnabled = false;
                 Button_Strike.IsEnabled = false;
             }
-            
+            return rezultat;
         }
 
         public int DamageDone(CombatClass fighter1, CombatClass fighter2)
@@ -187,8 +190,6 @@ namespace Duel
                 //sectiunea rezultat updatat
                 // dezactivat butoane de strike si wait, ..
                 weHaveWinner = true;
-                
-                //Label_Rezultat.Content=""
             }
             return weHaveWinner;
         }
@@ -208,7 +209,14 @@ namespace Duel
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
 
             timer.Stop();//pun aici a doua chemare a functiei
-            Attack(oponent, player);
+            //Attack(oponent, player);
+            ListViewItem itemNou = new ListViewItem
+            {
+                Content = Attack(oponent, player),
+                Foreground = Brushes.Red
+            };
+            ListView_DamageOutput.Items.Add(itemNou);
+
             Button_Strike.IsEnabled = true;
 
             if (player.HP < 0)
