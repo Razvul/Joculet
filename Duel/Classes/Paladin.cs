@@ -17,7 +17,7 @@ namespace Classes
         public int HolyLight()
         {
             Random rdn = new Random();
-            int Heal = rdn.Next(15, 40);
+            int Heal = rdn.Next(5, 11);
             HP += Heal;
             return Heal;
         }
