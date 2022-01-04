@@ -10,7 +10,6 @@ namespace Classes
     {
         #region Proprietati
         private int minDamage;
-
         public int MinDamage
         {
             get { return minDamage; }
@@ -18,7 +17,6 @@ namespace Classes
         }
 
         private int maxDamage;
-
         public int MaxDamage
         {
             get { return maxDamage; }
@@ -26,11 +24,17 @@ namespace Classes
         }
 
         private string weaponName;
-
         public string WeaponName
         {
             get { return weaponName; }
             set { weaponName = value; }
+        }
+
+        private string weaponType;
+        public string WeaponType
+        {
+            get { return weaponType; }
+            set { weaponType = value; }
         }
         #endregion
     }

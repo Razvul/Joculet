@@ -115,7 +115,7 @@
             </StackPanel>
             <ListView
                 x:Name="ListView_DamageOutput"
-                Width="250"
+                Width="275"
                 Margin="0,15,0,-99.2"/>
             <StackPanel
                 Orientation="Vertical">

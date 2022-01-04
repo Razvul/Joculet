@@ -33,30 +33,7 @@ namespace Duel
         {
             InitializeComponent();
             Populate();
-            //var ObjectList = new ListOfObjects();
-            /*var Classes = ObjectList.GetClasses();
-            var Weapons = ObjectList.GetWeapons();*/
-
             LoadDispatcher();
-
-            /*foreach (var Class in Classes)
-            {
-                ComboBox_Class_Player.Items.Add(Class);
-                ComboBox_Class_Oponent.Items.Add(Class);
-            }
-            ComboBox_Class_Player.SelectedIndex = 0;
-            ComboBox_Class_Oponent.SelectedIndex = 1;
-
-            foreach (var Weapon in Weapons)
-            {
-                ComboBox_Weapon_Player.Items.Add(Weapon);
-                ComboBox_Weapon_Oponent.Items.Add(Weapon);
-            }
-
-            ComboBox_Weapon_Player.SelectedIndex = 1;
-            ComboBox_Weapon_Oponent.SelectedIndex = 0;*/
-
-            
         }     
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -99,7 +76,6 @@ namespace Duel
             var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
 
-            //Attack(player, oponent);
             ListViewItem itemNou = new ListViewItem
             {
                 Content = Attack(player, oponent),
@@ -187,8 +163,6 @@ namespace Duel
             bool weHaveWinner = false;
             if (p1.HP <= 0 || p2.HP <= 0)
             {
-                //sectiunea rezultat updatat
-                // dezactivat butoane de strike si wait, ..
                 weHaveWinner = true;
             }
             return weHaveWinner;
@@ -208,16 +182,13 @@ namespace Duel
             var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
 
-            timer.Stop();//pun aici a doua chemare a functiei
-            //Attack(oponent, player);
+            timer.Stop();
             ListViewItem itemNou = new ListViewItem
             {
                 Content = Attack(oponent, player),
                 Foreground = Brushes.Red
             };
             ListView_DamageOutput.Items.Add(itemNou);
-
-            Button_Strike.IsEnabled = true;
 
             if (player.HP < 0)
             {
@@ -227,6 +198,8 @@ namespace Duel
             {
                 Label_HP_Player.Content = player.HP;
             }
+
+            Button_Strike.IsEnabled = true;
 
             if (player.HP <= 0 && oponent.HP <= 0)
             {
@@ -268,9 +241,7 @@ namespace Duel
                 ComboBox_Class_Player.Items.Add(luptator);
                 ComboBox_Class_Oponent.Items.Add(luptator);
             }
-            //ComboBox_Class_Player.DisplayMemberPath = "Name";
             ComboBox_Class_Player.SelectedIndex = 0;
-            //ComboBox_Class_Oponent.DisplayMemberPath = "Name";
             ComboBox_Class_Oponent.SelectedIndex = 1;
         }
 
@@ -282,9 +253,7 @@ namespace Duel
                 ComboBox_Weapon_Player.Items.Add(arma);
                 ComboBox_Weapon_Oponent.Items.Add(arma);
             }
-            //ComboBox_Weapon_Player.DisplayMemberPath = "WeaponName";
             ComboBox_Weapon_Player.SelectedIndex = 0;
-            //ComboBox_Weapon_Oponent.DisplayMemberPath = "WeaponName";
             ComboBox_Weapon_Oponent.SelectedIndex = 2;
         }
     }
