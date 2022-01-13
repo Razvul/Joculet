@@ -60,15 +60,22 @@ namespace Duel
             classOponent.MaxDamage += weaponOponent.MaxDamage;
             #endregion
 
+            #region PLayer status
             Label_Player.Content = classPlayer.Name;
-            Label_Oponent.Content = classOponent.Name;
+            Label_HP_Player.Content = "Health: " + classPlayer.HP;
+            Label_Player_Damage.Content = "Damage: " + classPlayer.MinDamage + "-" + classPlayer.MaxDamage;
+            Label_Player_Armor.Content = "Armor: " + classPlayer.Armor;
+            #endregion
 
-            Label_HP_Player.Content = classPlayer.HP;
-            Label_HP_Oponent.Content = classOponent.HP;
+            #region Oponent status
+            Label_Oponent.Content = classOponent.Name;
+            Label_HP_Oponent.Content = "Health: " + classOponent.HP;
+            Label_Oponent_Damage.Content = "Damage: " + classOponent.MinDamage + "-" + classOponent.MaxDamage;
+            Label_Oponent_Armor.Content = "Armor: " + classOponent.Armor;
+            #endregion
 
             Button_StartFight.IsEnabled = false;
             Button_Strike.IsEnabled = true;
-            Button_Special_Skill.IsEnabled = false;
         }
 
         private /*async*/ void Button_Strike_Click(object sender, RoutedEventArgs e)
@@ -78,7 +85,7 @@ namespace Duel
 
             ListViewItem itemNou = new ListViewItem
             {
-                Content = Attack(player, oponent),
+                Content = "Health: " + Attack(player, oponent),
                 Foreground = Brushes.Blue
             };
             ListView_DamageOutput.Items.Add(itemNou);
@@ -87,11 +94,11 @@ namespace Duel
 
             if (oponent.HP < 0)
             {
-                Label_HP_Oponent.Content = 0;
+                Label_HP_Oponent.Content = "Dead";
             }
             else
             {
-                Label_HP_Oponent.Content = oponent.HP;
+                Label_HP_Oponent.Content = "Health: " + oponent.HP;
             }
 
             //await Task.Delay(10000);
@@ -116,7 +123,7 @@ namespace Duel
 
                 int critDmg = razboinic.MortalStrike();
                 oponent.HP -= critDmg;
-                Label_HP_Oponent.Content = oponent.HP;
+                Label_HP_Oponent.Content = "Health: " + oponent.HP;
 
                 string attack = $"{razboinic.Name} dealt {critDmg} critical damage to {oponent.Name}";
                 ListView_DamageOutput.Items.Add(attack);
@@ -128,7 +135,7 @@ namespace Duel
 
                 int heal = luptator.HolyLight();
                 player.HP += heal;
-                Label_HP_Player.Content = player.HP;
+                Label_HP_Player.Content = "Health: " + player.HP;
 
                 string attack = $"{player.Name} healed {heal} damage";
                 ListView_DamageOutput.Items.Add(attack);
@@ -182,21 +189,20 @@ namespace Duel
             var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
 
-            timer.Stop();
             ListViewItem itemNou = new ListViewItem
             {
-                Content = Attack(oponent, player),
+                Content = "Health: " + Attack(oponent, player),
                 Foreground = Brushes.Red
             };
             ListView_DamageOutput.Items.Add(itemNou);
 
-            if (player.HP < 0)
+            if (player.HP <= 0)
             {
-                Label_HP_Player.Content = 0;
+                Label_HP_Player.Content = "Dead";
             }
             else
             {
-                Label_HP_Player.Content = player.HP;
+                Label_HP_Player.Content = "Health: " + player.HP;
             }
 
             Button_Strike.IsEnabled = true;
@@ -216,6 +222,7 @@ namespace Duel
                 Label_Rezultat.Content = $"Winner is {player.Name}";
                 Button_Strike.IsEnabled = false;
             }
+            timer.Stop();
         }
         #endregion
 
