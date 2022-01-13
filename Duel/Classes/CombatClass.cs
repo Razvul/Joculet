@@ -10,7 +10,6 @@ namespace Classes
     {
         #region Proprietati
         private int hp;
-
         public int HP
         {
             get { return hp; }
@@ -18,7 +17,6 @@ namespace Classes
         }
 
         private int minDamage;
-
         public int MinDamage
         {
             get { return minDamage; }
@@ -26,7 +24,6 @@ namespace Classes
         }
 
         private int maxDamage;
-
         public int MaxDamage
         {
             get { return maxDamage; }
@@ -34,7 +31,6 @@ namespace Classes
         }
 
         private int armor;
-
         public int Armor
         {
             get { return armor; }
@@ -42,7 +38,6 @@ namespace Classes
         }
 
         private string name;
-
         public string Name
         {
             get { return name; }
@@ -50,7 +45,6 @@ namespace Classes
         }
 
         private string classType;
-
         public string ClassType
         {
             get { return classType; }
@@ -69,13 +63,12 @@ namespace Classes
             ClassType = objClass;
         }
 
-
         public int AttackValue(int objMinDamage, int objMaxDamage)
         {
             MinDamage = objMinDamage;
             MaxDamage = objMaxDamage;
             Random rnd = new Random();
-            int RandomAttackDamage = rnd.Next(MinDamage, MaxDamage);
+            int RandomAttackDamage = rnd.Next(MinDamage, MaxDamage + 1);
             return RandomAttackDamage;
         }
     }

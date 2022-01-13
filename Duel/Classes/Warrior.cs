@@ -17,10 +17,9 @@ namespace Classes
 
         public int MortalStrike()
         {
-            int crit;
             Random rdn = new Random();
             int HighDamage = rdn.Next(20, 50);
-            crit = HighDamage * HP / 100;
+            int crit = HighDamage * HP / 100;
             return crit;
         }
     }

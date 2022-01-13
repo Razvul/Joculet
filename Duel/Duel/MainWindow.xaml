@@ -53,8 +53,6 @@
             Grid.Column="0"
             Orientation="Horizontal">
             <StackPanel
-            Grid.Row="2"
-            Grid.Column="0"
             VerticalAlignment="Top"
             HorizontalAlignment="Left">
                 <Label
@@ -68,8 +66,6 @@
             </StackPanel>
 
             <StackPanel
-                Grid.Row="2"
-                Grid.Column="0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right">
                 <Label
@@ -112,6 +108,18 @@
                     HorizontalContentAlignment="Center"
                     Width="120"
                     Height="25"/>
+                <Label
+                    x:Name="Label_Player_Damage"
+                    Width="120"
+                    Height="25"
+                    Content="Damage"
+                    HorizontalContentAlignment="Center"/>
+                <Label
+                    x:Name="Label_Player_Armor"
+                    Width="120"
+                    Height="25"
+                    Content="Armor"
+                    HorizontalContentAlignment="Center"/>
             </StackPanel>
             <ListView
                 x:Name="ListView_DamageOutput"
@@ -131,6 +139,18 @@
                     HorizontalContentAlignment="Center"
                     Width="120"
                     Height="25"/>
+                <Label
+                    x:Name="Label_Oponent_Damage"
+                    Width="120"
+                    Height="25"
+                    Content="Damage"
+                    HorizontalContentAlignment="Center"/>
+                <Label
+                    x:Name="Label_Oponent_Armor"
+                    Width="120"
+                    Height="25"
+                    Content="Armor"
+                    HorizontalContentAlignment="Center"/>
             </StackPanel>
         </StackPanel>
 
@@ -159,6 +179,8 @@
             <Label
                 x:Name="Label_Rezultat"
                 Content="Rezultat"
+                Width="120"
+                Height="25"
                 HorizontalContentAlignment="Center"/>
         </StackPanel>
     </Grid>
