@@ -16,6 +16,14 @@ namespace Classes
             set { hp = value; }
         }
 
+        private int maxHP;
+        public int MaxHP
+        {
+            get { return maxHP; }
+            set { maxHP = value; }
+        }
+
+
         private int minDamage;
         public int MinDamage
         {
