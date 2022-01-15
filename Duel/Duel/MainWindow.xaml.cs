@@ -95,7 +95,7 @@ namespace Duel
 
             Button_Strike.IsEnabled = false;
 
-            if (oponent.HP < 0)
+            if (oponent.HP <= 0)
             {
                 Label_HP_Oponent.Content = "Dead";
             }
@@ -154,6 +154,8 @@ namespace Duel
             Button_Restart.IsEnabled = false;
             ListView_DamageOutput.Items.Clear();
 
+            strikeCounter = 0;
+
             var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
             var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
             var weaponPlayer = (Weapons)ComboBox_Weapon_Player.SelectedItem;
@@ -163,10 +165,12 @@ namespace Duel
             player.HP = player.MaxHP;
             player.MinDamage -= weaponPlayer.MinDamage;
             player.MaxDamage -= weaponPlayer.MaxDamage;
+            Label_Player_Damage.Content = "Damage: " + player.MinDamage + "-" + player.MaxDamage;
 
             oponent.HP = oponent.MaxHP;
             oponent.MinDamage -= weaponOponent.MinDamage;
             oponent.MaxDamage -= weaponOponent.MaxDamage;
+            Label_Oponent_Damage.Content = "Damage: " + oponent.MinDamage + "-" + oponent.MaxDamage;
             #endregion
         }
         #endregion
@@ -218,26 +222,24 @@ namespace Duel
 
             Button_Strike.IsEnabled = true;
 
-            if (player.HP <= 0 && oponent.HP <= 0)
+            if(player.HP <=0 || oponent.HP <= 0)
             {
-                Label_Rezultat.Content = "We have a draw";
                 Button_Strike.IsEnabled = false;
                 Button_Special_Skill.IsEnabled = false;
                 Button_Restart.IsEnabled = true;
+            }
+
+            if (player.HP <= 0 && oponent.HP <= 0)
+            {
+                Label_Rezultat.Content = "We have a draw";
             }
             else if (player.HP <= 0)
             {
                 Label_Rezultat.Content = $"Winner is {oponent.Name}";
-                Button_Strike.IsEnabled = false;
-                Button_Special_Skill.IsEnabled = false;
-                Button_Restart.IsEnabled = true;
             }
             else if (oponent.HP <= 0)
             {
                 Label_Rezultat.Content = $"Winner is {player.Name}";
-                Button_Strike.IsEnabled = false;
-                Button_Special_Skill.IsEnabled = false;
-                Button_Restart.IsEnabled = true;
             }
             timer.Stop();
         }
