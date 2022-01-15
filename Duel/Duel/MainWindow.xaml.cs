@@ -40,6 +40,7 @@ namespace Duel
         {
             Button_Strike.IsEnabled = false;
             Button_Special_Skill.IsEnabled = false;
+            Button_Restart.IsEnabled = false;
         }
 
         #region Butoane
@@ -47,31 +48,33 @@ namespace Duel
         {
             ComboBoxes(false);
 
-            var classPlayer = (CombatClass)ComboBox_Class_Player.SelectedItem;
-            var classOponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
+            var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
+            var Oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
             var weaponPlayer = (Weapons)ComboBox_Weapon_Player.SelectedItem;
             var weaponOponent = (Weapons)ComboBox_Weapon_Oponent.SelectedItem;
 
             #region Weapon Equipment
-            classPlayer.MinDamage += weaponPlayer.MinDamage;
-            classPlayer.MaxDamage += weaponPlayer.MaxDamage;
+            player.MinDamage += weaponPlayer.MinDamage;
+            player.MaxDamage += weaponPlayer.MaxDamage;
 
-            classOponent.MinDamage += weaponOponent.MinDamage;
-            classOponent.MaxDamage += weaponOponent.MaxDamage;
+            Oponent.MinDamage += weaponOponent.MinDamage;
+            Oponent.MaxDamage += weaponOponent.MaxDamage;
             #endregion
 
             #region PLayer status
-            Label_Player.Content = classPlayer.Name;
-            Label_HP_Player.Content = "Health: " + classPlayer.HP;
-            Label_Player_Damage.Content = "Damage: " + classPlayer.MinDamage + "-" + classPlayer.MaxDamage;
-            Label_Player_Armor.Content = "Armor: " + classPlayer.Armor;
+            Label_Player.Content = player.Name;
+            player.MaxHP = player.HP;
+            Label_HP_Player.Content = "Health: " + player.HP;
+            Label_Player_Damage.Content = "Damage: " + player.MinDamage + "-" + player.MaxDamage;
+            Label_Player_Armor.Content = "Armor: " + player.Armor;
             #endregion
 
             #region Oponent status
-            Label_Oponent.Content = classOponent.Name;
-            Label_HP_Oponent.Content = "Health: " + classOponent.HP;
-            Label_Oponent_Damage.Content = "Damage: " + classOponent.MinDamage + "-" + classOponent.MaxDamage;
-            Label_Oponent_Armor.Content = "Armor: " + classOponent.Armor;
+            Label_Oponent.Content = Oponent.Name;
+            Oponent.MaxHP = Oponent.HP;
+            Label_HP_Oponent.Content = "Health: " + Oponent.HP;
+            Label_Oponent_Damage.Content = "Damage: " + Oponent.MinDamage + "-" + Oponent.MaxDamage;
+            Label_Oponent_Armor.Content = "Armor: " + Oponent.Armor;
             #endregion
 
             Button_StartFight.IsEnabled = false;
@@ -85,7 +88,7 @@ namespace Duel
 
             ListViewItem itemNou = new ListViewItem
             {
-                Content = "Health: " + Attack(player, oponent),
+                Content = Attack(player, oponent),
                 Foreground = Brushes.Blue
             };
             ListView_DamageOutput.Items.Add(itemNou);
@@ -143,6 +146,29 @@ namespace Duel
 
             Button_Special_Skill.IsEnabled = false;
         }
+
+        private void Button_Restart_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBoxes(true);
+            Button_StartFight.IsEnabled = true;
+            Button_Restart.IsEnabled = false;
+            ListView_DamageOutput.Items.Clear();
+
+            var player = (CombatClass)ComboBox_Class_Player.SelectedItem;
+            var oponent = (CombatClass)ComboBox_Class_Oponent.SelectedItem;
+            var weaponPlayer = (Weapons)ComboBox_Weapon_Player.SelectedItem;
+            var weaponOponent = (Weapons)ComboBox_Weapon_Oponent.SelectedItem;
+
+            #region Removing weapons
+            player.HP = player.MaxHP;
+            player.MinDamage -= weaponPlayer.MinDamage;
+            player.MaxDamage -= weaponPlayer.MaxDamage;
+
+            oponent.HP = oponent.MaxHP;
+            oponent.MinDamage -= weaponOponent.MinDamage;
+            oponent.MaxDamage -= weaponOponent.MaxDamage;
+            #endregion
+        }
         #endregion
 
         #region Functii
@@ -150,11 +176,6 @@ namespace Duel
         {
             string rezultat = $"{fighter1.Name} dealt {DamageDone(fighter1, fighter2)} damage to {fighter2.Name}";
 
-            if (CheckWinner(fighter1, fighter2))// daca n-am winner, fac astea
-            {
-                Button_Special_Skill.IsEnabled = false;
-                Button_Strike.IsEnabled = false;
-            }
             return rezultat;
         }
 
@@ -163,16 +184,6 @@ namespace Duel
             int attackValue = fighter1.AttackValue(fighter1.MinDamage, fighter1.MaxDamage) - fighter2.Armor;
             fighter2.HP -= attackValue;
             return attackValue;
-        }
-
-        public bool CheckWinner(CombatClass p1, CombatClass p2)
-        {
-            bool weHaveWinner = false;
-            if (p1.HP <= 0 || p2.HP <= 0)
-            {
-                weHaveWinner = true;
-            }
-            return weHaveWinner;
         }
         #endregion
 
@@ -191,7 +202,7 @@ namespace Duel
 
             ListViewItem itemNou = new ListViewItem
             {
-                Content = "Health: " + Attack(oponent, player),
+                Content = Attack(oponent, player),
                 Foreground = Brushes.Red
             };
             ListView_DamageOutput.Items.Add(itemNou);
@@ -211,16 +222,22 @@ namespace Duel
             {
                 Label_Rezultat.Content = "We have a draw";
                 Button_Strike.IsEnabled = false;
+                Button_Special_Skill.IsEnabled = false;
+                Button_Restart.IsEnabled = true;
             }
             else if (player.HP <= 0)
             {
                 Label_Rezultat.Content = $"Winner is {oponent.Name}";
                 Button_Strike.IsEnabled = false;
+                Button_Special_Skill.IsEnabled = false;
+                Button_Restart.IsEnabled = true;
             }
             else if (oponent.HP <= 0)
             {
                 Label_Rezultat.Content = $"Winner is {player.Name}";
                 Button_Strike.IsEnabled = false;
+                Button_Special_Skill.IsEnabled = false;
+                Button_Restart.IsEnabled = true;
             }
             timer.Stop();
         }

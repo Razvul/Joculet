@@ -182,6 +182,12 @@
                 Width="120"
                 Height="25"
                 HorizontalContentAlignment="Center"/>
+            <Button
+                x:Name="Button_Restart"
+                Content="Restart Fight"
+                Width="120"
+                Height="25"
+                Click="Button_Restart_Click"/>
         </StackPanel>
     </Grid>
 </Window>
